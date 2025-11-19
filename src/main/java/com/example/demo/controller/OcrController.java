@@ -29,7 +29,10 @@ import com.example.demo.service.AiReceiptAnalyzer;
 import com.google.cloud.documentai.v1.Document;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {
+    "http://localhost:3000",       // 개발용
+    "http://192.168.0.5:8090"      // 운영 React
+})
 public class OcrController {
 
     @Autowired

@@ -31,7 +31,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {
+    "http://localhost:3000",       // 개발용
+    "http://192.168.0.5:8090"      // 운영 React
+})
 public class AccountController {
 
 	private final AccountService accountService;
@@ -204,11 +207,6 @@ public class AccountController {
      */
     @PostMapping("Account/AccountDispatchMemberSave")
     public String AccountDispatchMemberSave(@RequestParam Map<String, Object> paramMap) {
-    	
-    	System.out.println("account_id :: " + paramMap.get("account_id"));
-    	System.out.println("name :: " + paramMap.get("name"));
-    	System.out.println("rrn :: " + paramMap.get("rrn"));
-    	System.out.println("account_number :: " + paramMap.get("account_number"));
     	
     	int iResult = 0;
     	

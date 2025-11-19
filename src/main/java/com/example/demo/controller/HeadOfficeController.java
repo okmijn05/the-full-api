@@ -17,7 +17,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {
+    "http://localhost:3000",       // 개발용
+    "http://192.168.0.5:8090"      // 운영 React
+})
 public class HeadOfficeController {
 	
 	private final HeadOfficeService headOfficeService;

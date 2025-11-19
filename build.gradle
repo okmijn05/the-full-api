@@ -41,6 +41,8 @@ tasks.withType(ProcessResources) {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// 외부 톰캣에서 돌릴 거니까 providedRuntime
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	implementation 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
@@ -58,6 +60,10 @@ dependencies {
 	// ✅ WebClient (Spring WebFlux)
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	
+}
+
+bootWar {
+    archiveFileName = 'api.war'
 }
 
 tasks.named('test') {
