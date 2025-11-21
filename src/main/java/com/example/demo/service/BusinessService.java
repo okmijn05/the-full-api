@@ -75,11 +75,27 @@ public class BusinessService {
 		resultList = businessMapper.CarList(paramMap);
 		return resultList;
 	}
+	// 고객사 관리 -> 법인차량 이미지 조회
+	public List<Map<String, Object>> CarFileList(Map<String, Object> paramMap) {
+		List<Map<String, Object>> resultList = new ArrayList<>();
+		resultList = businessMapper.CarFileList(paramMap);
+		return resultList;
+	}
 	// 고객사 관리 -> 법인차량 저장
 	public int CarSave (Map<String, Object> paramMap) {
 		int iResult = 0;
 		iResult = businessMapper.CarSave(paramMap);
 		return iResult;
+	}
+	// 고객사 관리 -> 법인차량 이미지 삭제
+	public int CarFileDelete (Map<String, Object> paramMap) {
+		int iResult = 0;
+		iResult = businessMapper.CarFileDelete(paramMap);
+		return iResult;
+	}
+	// 고객사 관리 -> 법인차량 이미지 저장
+	public void SaveCarFile(Map<String, Object> param) {
+	    businessMapper.SaveCarFile(param);
 	}
 	// 고객사 관리 -> 법인차량 신규 저장
 	public int CarNewSave (Map<String, Object> paramMap) {

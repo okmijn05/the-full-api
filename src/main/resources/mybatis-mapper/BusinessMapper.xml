@@ -113,12 +113,22 @@
 			   service_amt,
 			   mileage,
 			   comment,
-			   exterior_image,
 			   exterior_note
 		FROM tb_thefull_car_management
 		<if test="car_number != null">
 		WHERE car_number = #{car_number}
 		</if>
+	</select>
+	
+	<select id="CarFileList" parameterType="map" resultType="map">
+		SELECt image_id,
+			   car_number,
+			   exterior_image,
+		       image_name,
+		       DATE_FORMAT(service_dt, '%Y-%m-%d') as service_dt
+		FROM tb_thefull_car_image_management
+		WHERE car_number = #{car_number}
+		AND service_dt = DATE_FORMAT(#{service_dt}, '%Y-%m-%d')
 	</select>
 	
 	<select id="CarSelectList" parameterType="map" resultType="map">
@@ -137,9 +147,9 @@
 	</insert>
 	
 	<insert id="CarSave" parameterType="map">
-		INSERT INTO tb_thefull_car_management(car_number,service_dt,car_name,service_note,service_amt,mileage,comment,exterior_image,exterior_note)
+		INSERT INTO tb_thefull_car_management(car_number,service_dt,car_name,service_note,service_amt,mileage,comment,exterior_note,user_id,update_dt)
 		VALUES
-		(#{car_number},DATE_FORMAT(#{service_dt}, '%Y-%m-%d'),#{car_name},#{service_note},#{service_amt},#{mileage},#{comment},#{exterior_image},#{exterior_note})
+		(#{car_number},DATE_FORMAT(#{service_dt}, '%Y-%m-%d'),#{car_name},#{service_note},#{service_amt},#{mileage},#{comment},#{exterior_note},#{user_id},DATE_FORMAT(NOW(), '%Y-%m-%d'))
 		ON DUPLICATE KEY UPDATE
 		car_number = VALUES(car_number),
 		service_dt = VALUES(service_dt),
@@ -148,8 +158,27 @@
 		service_amt = VALUES(service_amt),
 		mileage = VALUES(mileage),
 		comment = VALUES(comment),
-		exterior_image = VALUES(exterior_image),
-		exterior_note = VALUES(exterior_note)
+		exterior_note = VALUES(exterior_note),
+		user_id = #{user_id},
+		update_dt = DATE_FORMAT(NOW(), '%Y-%m-%d')
+	</insert>
+	
+	<insert id="CarFileDelete" parameterType="map">
+		DELETE FROM tb_thefull_car_image_management 
+		WHERE image_id = #{image_id}
+		AND car_number = #{car_number}
+		AND service_dt = DATE_FORMAT(#{service_dt}, '%Y-%m-%d')
+	</insert>
+	
+	<insert id="SaveCarFile" parameterType="map">
+	    INSERT INTO tb_thefull_car_image_management 
+	    (car_number, service_dt, exterior_image, image_name)
+	    VALUES (
+	    	#{car_number},
+	        DATE_FORMAT(#{service_dt}, '%Y-%m-%d'),
+	        #{exterior_image},
+	        #{image_name}
+	    )
 	</insert>
 	
 	<select id="CookWearList" parameterType="map" resultType="map">

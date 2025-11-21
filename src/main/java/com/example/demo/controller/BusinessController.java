@@ -283,6 +283,21 @@ public class BusinessController {
     	List<Map<String, Object>> resultList = new ArrayList<>();
     	resultList = businessService.CarList(param);
     	
+    	for (Map<String, Object> row : resultList) {
+    		
+    		Map<String, Object> paramMap = new HashMap<String, Object>();
+    		
+    		paramMap.put("car_number", row.get("car_number"));
+    		paramMap.put("service_dt", row.get("service_dt"));
+    		
+    		System.out.println("car_number ::" + row.get("car_number").toString());
+    		
+            if (row.get("car_number") != null) {
+                List<Map<String, Object>> files = businessService.CarFileList(paramMap);
+                row.put("images", files);   // 이미지 배열로 넣는다!
+            }
+        }
+    	
     	return new Gson().toJson(resultList);
     }
     /* 
@@ -332,6 +347,114 @@ public class BusinessController {
     	
     	return obj.toString();
     }
+    
+    /* 
+	 * part		: 영업
+     * method 	: CarFileDelete
+     * comment 	: 고객사 관리 -> 법인차량 이미지 삭제
+     */
+    @DeleteMapping("Business/CarFileDelete")
+    public String CarFileDelete(@RequestParam Map<String, Object> param) {
+        JsonObject obj = new JsonObject();
+        try {
+            // ✅ 삭제할 파일 경로 구성
+            Path filePath2 = Paths.get("src/main/resources/static" + param.get("exterior_image"));
+            File file = filePath2.toFile();
+
+            if (!file.exists()) {
+                obj.addProperty("code", 404);
+                obj.addProperty("message", "파일이 존재하지 않습니다: " + filePath2);
+                return obj.toString();
+            }
+
+            boolean deleted = file.delete();
+        	
+        	int iResult = 0;
+        	
+        	iResult = businessService.CarFileDelete(param);
+
+            if (deleted && iResult > 0) {
+                obj.addProperty("code", 200);
+                obj.addProperty("message", "파일 삭제 성공");
+            } else {
+                obj.addProperty("code", 500);
+                obj.addProperty("message", "파일 삭제 실패 (삭제 권한 또는 잠금 확인)");
+            }
+
+        } catch (Exception e) {
+            obj.addProperty("code", 500);
+            obj.addProperty("message", "서버 오류: " + e.getMessage());
+        }
+
+        return obj.toString();
+    }
+    
+    /* 
+	 * part		: 영업
+     * method 	: AccountEventSave
+     * comment 	: 고객사 관리 -> 법인차량 이미지 저장
+     */
+	@PostMapping("Business/CarFilesUpload")
+	private String CarFilesUpload(
+	        @RequestParam("car_number") String car_number,
+	        @RequestParam("service_dt") String service_dt,
+	        @RequestParam("files") MultipartFile[] files
+	) throws IOException {
+
+	    JsonObject obj = new JsonObject();
+
+	    try {
+
+	        // ------------------------------
+	        // 1) 이미지 저장 경로 구성
+	        // ------------------------------
+	        String staticPath = new File("src/main/resources/static").getAbsolutePath();
+	        String basePath = staticPath + "/image/car/" + service_dt + "/" + car_number + "/";
+	        Path dirPath = Paths.get(basePath);
+	        Files.createDirectories(dirPath); // 폴더 없으면 생성
+
+	        List<Map<String, Object>> insertedFiles = new ArrayList<>();
+	        // ------------------------------
+	        // 2) 업로드 파일 저장 처리
+	        // ------------------------------
+	        for (MultipartFile file : files) {
+
+	            String originalFileName = file.getOriginalFilename();
+	            String uniqueFileName = UUID.randomUUID() + "_" + originalFileName;
+
+	            Path filePath = dirPath.resolve(uniqueFileName);
+	            file.transferTo(filePath.toFile());
+
+	            String imagePath = "/image/car/" + service_dt + "/" + car_number + "/" + uniqueFileName;
+
+	            // ------------------------------
+	            // 4) DB 저장
+	            // ------------------------------
+	            Map<String, Object> param = new HashMap<>();
+	            param.put("car_number", car_number);
+	            param.put("service_dt", service_dt);
+	            param.put("exterior_image", imagePath);
+	            param.put("image_name", originalFileName);
+
+	            businessService.SaveCarFile(param);
+
+	            insertedFiles.add(param);
+	        }
+
+	        // ------------------------------
+	        // 5) 응답 구성
+	        // ------------------------------
+	        obj.addProperty("code", 200);
+	        obj.addProperty("message", "업로드 성공");
+	        obj.add("images", new Gson().toJsonTree(insertedFiles));
+
+	    } catch (Exception e) {
+	        obj.addProperty("code", 400);
+	        obj.addProperty("message", "업로드 실패: " + e.getMessage());
+	    }
+
+	    return obj.toString();
+	}
     
     /* 
 	 * part		: 영업
@@ -500,12 +623,6 @@ public class BusinessController {
      */
 	@PostMapping("Business/AccountEventSave")
     public Map<String, Object> AccountEventSave(@RequestBody Map<String, Object> param) {
-		
-		System.out.println(" ===== param :: " + param);
-		System.out.println(" ===== account_id :: " + param.get("account_id"));
-		System.out.println(" ===== event_name :: " + param.get("event_name"));
-		System.out.println(" ===== event_dt :: " + param.get("event_dt"));
-		System.out.println(" ===== user_id :: " + param.get("user_id"));
 		
         if (param.get("event_id") == null) {
             // 신규 저장
