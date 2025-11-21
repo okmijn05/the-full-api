@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.WebConfig;
 import com.example.demo.service.AccountService;
 import com.example.demo.service.HeadOfficeService;
+import com.google.api.client.util.Value;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -388,8 +389,8 @@ public class AccountController {
 
     private String saveFile(String accountId, String type, MultipartFile file) throws IOException {
         // 프로젝트 루트 대신 static 폴더 경로 사용
-        String staticPath = new File("src/main/resources/static").getAbsolutePath();
-        String basePath = staticPath + "/image/" + accountId + "/" + type + "/";
+        String staticPath = new File("C:/Program Files/Apache Software Foundation/Tomcat 10.1/webapps/api/WEB-INF/classes/static/image").getAbsolutePath();
+        String basePath = staticPath + "/" + accountId + "/" + type + "/";
         Path dirPath = Paths.get(basePath);
         Files.createDirectories(dirPath); // 폴더 없으면 생성
 
@@ -612,8 +613,8 @@ public class AccountController {
     	String resultPath = "";
     	
         // 프로젝트 루트 대신 static 폴더 경로 사용
-        String staticPath = new File("src/main/resources/static").getAbsolutePath();
-        String basePath = staticPath + "/image/" + type + "/" + gubun + "/"+ folder +  "/";
+        String staticPath = new File("C:/Program Files/Apache Software Foundation/Tomcat 10.1/webapps/api/WEB-INF/classes/static/image").getAbsolutePath();
+        String basePath = staticPath + "/" + type + "/" + gubun + "/"+ folder +  "/";
         Path dirPath = Paths.get(basePath);
         Files.createDirectories(dirPath); // 폴더 없으면 생성
 
