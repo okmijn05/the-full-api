@@ -64,11 +64,31 @@ public class UserController {
      * comment 	: 사용자 등록
      */
 	@PostMapping("/User/UserRgt")
-	public String UserRgt(@RequestParam Map<String,Object> paramMap) {
+	public String UserRgt(@RequestBody Map<String,Object> paramMap) {
 		
-		userService.UserRgt(paramMap);
+		int iResult = 0 ;
 		
-		return "a";
+		// info, detail 꺼내기
+	    Map<String, Object> info   = (Map<String, Object>) paramMap.get("info");
+	    Map<String, Object> detail = (Map<String, Object>) paramMap.get("detail");
+
+	    System.out.println(info);
+	    System.out.println(detail);
+	    
+	    iResult += userService.UserRgt(info);
+	    iResult += userService.UserRgtDetail(detail);
+	    
+	    JsonObject obj = new JsonObject();
+    	
+    	if(iResult > 0) {
+			obj.addProperty("code", 200);
+			obj.addProperty("message", "성공");
+    	} else {
+    		obj.addProperty("code", 400);
+			obj.addProperty("message", "실패");
+    	}
+    	
+    	return obj.toString();
 	}
 	
 	 /*
@@ -89,6 +109,17 @@ public class UserController {
 	@GetMapping("User/UserMemberList")
 	public String UserMemberList(@RequestParam Map<String, Object> paramMap) {
 		List<Map<String, Object>> resultList = userService.UserMemberList(paramMap);
+		
+		return new Gson().toJson(resultList);
+	}
+	
+	/*
+     * method 	: ContractEndAccountList
+     * comment 	: 3개월 이내 종료업장 조회
+     */
+	@GetMapping("/User/ContractEndAccountList")
+	public String ContractEndAccountList() {
+		List<Map<String, Object>> resultList = userService.ContractEndAccountList();
 		
 		return new Gson().toJson(resultList);
 	}

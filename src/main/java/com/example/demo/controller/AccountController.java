@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +28,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.WebConfig;
 import com.example.demo.service.AccountService;
 import com.example.demo.service.HeadOfficeService;
-import com.google.api.client.util.Value;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -40,12 +40,18 @@ public class AccountController {
 
 	private final AccountService accountService;
 	private final HeadOfficeService headOfficeService;
-	private final String BASE_PATH = "/image"; // 실제 서버 경로 (이미지 저장을 위한)
+	private final String uploadDir;
 	
     @Autowired
-    public AccountController(AccountService accountService, HeadOfficeService headOfficeService, WebConfig webConfig) {
+    public AccountController(
+    			AccountService accountService, 
+    			HeadOfficeService headOfficeService, 
+    			WebConfig webConfig,
+    			@Value("${file.upload-dir}") String uploadDir
+    		) {
     	this.accountService = accountService;
     	this.headOfficeService = headOfficeService;
+    	this.uploadDir = uploadDir;
     }
     
     /*
@@ -389,7 +395,7 @@ public class AccountController {
 
     private String saveFile(String accountId, String type, MultipartFile file) throws IOException {
         // 프로젝트 루트 대신 static 폴더 경로 사용
-        String staticPath = new File("C:/Program Files/Apache Software Foundation/Tomcat 10.1/webapps/api/WEB-INF/classes/static/image").getAbsolutePath();
+        String staticPath = new File(uploadDir).getAbsolutePath();
         String basePath = staticPath + "/" + accountId + "/" + type + "/";
         Path dirPath = Paths.get(basePath);
         Files.createDirectories(dirPath); // 폴더 없으면 생성
@@ -613,7 +619,7 @@ public class AccountController {
     	String resultPath = "";
     	
         // 프로젝트 루트 대신 static 폴더 경로 사용
-        String staticPath = new File("C:/Program Files/Apache Software Foundation/Tomcat 10.1/webapps/api/WEB-INF/classes/static/image").getAbsolutePath();
+        String staticPath = new File(uploadDir).getAbsolutePath();
         String basePath = staticPath + "/" + type + "/" + gubun + "/"+ folder +  "/";
         Path dirPath = Paths.get(basePath);
         Files.createDirectories(dirPath); // 폴더 없으면 생성
@@ -640,7 +646,7 @@ public class AccountController {
         JsonObject obj = new JsonObject();
         try {
             // ✅ 삭제할 파일 경로 구성
-            Path filePath2 = Paths.get("src/main/resources/static" + filePath);
+            Path filePath2 = Paths.get(uploadDir + filePath);
             File file = filePath2.toFile();
 
             if (!file.exists()) {

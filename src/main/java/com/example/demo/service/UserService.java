@@ -23,6 +23,10 @@ public class UserService {
 	public int UserRgt(Map<String, Object> paramMap) {
 		return userMapper.UserRgt(paramMap);
 	};
+	// 사용자 상세등록
+	public int UserRgtDetail(Map<String, Object> paramMap) {
+		return userMapper.UserRgtDetail(paramMap);
+	};
 	// 신사업팀(우선...) 근태관리 조회
 	public List<Map<String, Object>> UserRecordSheetList(Map<String, Object> paramMap) {
 		return userMapper.UserRecordSheetList(paramMap);
@@ -30,5 +34,9 @@ public class UserService {
 	// 신사업팀(우선...) 근태관리 직원정보 조회
 	public List<Map<String, Object>> UserMemberList(Map<String, Object> paramMap) {
 		return userMapper.UserMemberList(paramMap);
+	}
+	// 3개월 이내 종료업장 조회
+	public List<Map<String, Object>> ContractEndAccountList() {
+		return userMapper.ContractEndAccountList();
 	}
 }

@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.WebConfig;
 import com.example.demo.service.OperateService;
-import com.google.api.client.util.Value;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -34,10 +34,16 @@ import com.google.gson.JsonObject;
 public class OperateController {
 
 	private final OperateService operateService;
+	private final String uploadDir;
 	
     @Autowired
-    public OperateController(OperateService operateService, WebConfig webConfig) {
+    public OperateController(
+	    		OperateService operateService, 
+	    		WebConfig webConfig,
+	    		@Value("${file.upload-dir}") String uploadDir
+    		) {
     	this.operateService = operateService;
+    	this.uploadDir = uploadDir;
     }
     
     /*
@@ -183,11 +189,10 @@ public class OperateController {
     	    @RequestParam("gubun") String gubun,
     	    @RequestParam("folder") String folder) throws IOException {
     	
-    	int iResult = 0;
     	String resultPath = "";
     	
         // 프로젝트 루트 대신 static 폴더 경로 사용
-        String staticPath = new File("C:/Program Files/Apache Software Foundation/Tomcat 10.1/webapps/api/WEB-INF/classes/static/image").getAbsolutePath();
+        String staticPath = new File(uploadDir).getAbsolutePath();
         String basePath = staticPath + "/" + type + "/" + gubun + "/"+ folder +  "/";
         Path dirPath = Paths.get(basePath);
         Files.createDirectories(dirPath); // 폴더 없으면 생성
@@ -200,9 +205,6 @@ public class OperateController {
         
         // 브라우저 접근용 경로 반환
         resultPath = "/image/" + type + "/" + gubun + "/" + folder + "/" + uniqueFileName;
-        System.out.println("resultPath :: " + resultPath);
-        // Map을 MyBatis로 저장
-        Map<String, Object> paramMap = new HashMap<>();
         
         JsonObject obj = new JsonObject();
     	

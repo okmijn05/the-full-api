@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.WebConfig;
 import com.example.demo.service.BusinessService;
-import com.google.api.client.util.Value;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -36,11 +36,18 @@ public class BusinessController {
 
     private final OcrController ocrController;
 	private final BusinessService businessService;
+	private final String uploadDir;
 	
     @Autowired
-    public BusinessController(BusinessService businessService, WebConfig webConfig, OcrController ocrController) {
+    public BusinessController(
+	    		BusinessService businessService, 
+	    		WebConfig webConfig, 
+	    		OcrController ocrController, 
+	    		@Value("${file.upload-dir}") String uploadDir
+    		) {
     	this.businessService = businessService;
     	this.ocrController = ocrController;
+    	this.uploadDir = uploadDir;
     }
     
     /* 
@@ -121,7 +128,7 @@ public class BusinessController {
     	String resultPath = "";
     	
         // 프로젝트 루트 대신 static 폴더 경로 사용
-        String staticPath = new File("C:/Program Files/Apache Software Foundation/Tomcat 10.1/webapps/api/WEB-INF/classes/static/image").getAbsolutePath();
+        String staticPath = new File(uploadDir).getAbsolutePath();
         String basePath = staticPath + "/" + "type/" + gubun + "/" + folder +  "/";
         
         Path dirPath = Paths.get(basePath);
@@ -284,6 +291,8 @@ public class BusinessController {
     	List<Map<String, Object>> resultList = new ArrayList<>();
     	resultList = businessService.CarList(param);
     	
+    	System.out.println("uploadDir :: " + uploadDir);
+    	
     	for (Map<String, Object> row : resultList) {
     		
     		Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -409,7 +418,7 @@ public class BusinessController {
 	        // ------------------------------
 	        // 1) 이미지 저장 경로 구성
 	        // ------------------------------
-	        String staticPath = new File("C:/Program Files/Apache Software Foundation/Tomcat 10.1/webapps/api/WEB-INF/classes/static/image").getAbsolutePath();
+	        String staticPath = new File(uploadDir).getAbsolutePath();
 	        String basePath = staticPath + "/" + "car/" + service_dt + "/" + car_number + "/";
 	        Path dirPath = Paths.get(basePath);
 	        Files.createDirectories(dirPath); // 폴더 없으면 생성
@@ -673,7 +682,7 @@ public class BusinessController {
 	        // ------------------------------
 	        // 1) 이미지 저장 경로 구성
 	        // ------------------------------
-	    	String staticPath = new File("C:/Program Files/Apache Software Foundation/Tomcat 10.1/webapps/api/WEB-INF/classes/static/image").getAbsolutePath();
+	    	String staticPath = new File(uploadDir).getAbsolutePath();
 	        String basePath = staticPath + "/" + "event/" + eventId + "/";
 	    	
 	        Path dirPath = Paths.get(basePath);

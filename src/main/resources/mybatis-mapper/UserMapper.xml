@@ -8,9 +8,18 @@
 		call tb_user_login(#{userId}, #{password})
 	</select>
 
-	<insert id="UserRgt">
-        insert into tb_member(name, phone, address, address_detail, zip_code, latitude, longitude, user_id, password, auto_login) 
-        values(#{name}, #{phone}, #{address}, #{address_detail}, #{zip_code}, #{latitude}, #{longitude}, #{user_id}, #{password}, #{auto_login})
+	<insert id="UserRgt" parameterType="map">
+        INSERT INTO tb_user
+        (user_id, user_name, password, user_type, reg_dt, join_dt, account_id, position, department)
+        VALUES
+        (#{user_id}, #{user_name}, #{password}, #{user_type}, DATE_FORMAT(NOW(), '%Y-%m-%d'), DATE_FORMAT(#{join_dt}, '%Y-%m-%d'), #{account_id}, #{position}, #{department})
+    </insert>
+    
+    <insert id="UserRgtDetail" parameterType="map">
+        INSERT INTO tb_userdetail
+        (user_id, address, address_detail, zipcode, birth_date, phone)
+        VALUES
+        (#{user_id}, #{address}, #{address_detail}, #{zipcode}, DATE_FORMAT(#{birth_date}, '%Y-%m-%d'), #{phone})
     </insert>
     
     <select id="UserRecordSheetList" parameterType="map" resultType="hashmap">
@@ -38,5 +47,17 @@
 			ON T.user_id = T2.user_id
 			WHERE T.del_yn = 'N'
 			ORDER BY position
+    </select>
+    
+    <select id="ContractEndAccountList" resultType="hashmap">
+    	SELECT a.account_id, a.account_name, DATE_FORMAT(ai.contract_end, '%Y-%m-%d') as contract_end
+		FROM tb_account_info ai
+		JOIN tb_account a
+		ON a.account_id = ai.account_id
+		<![CDATA[ 
+		WHERE ai.contract_end > NOW()
+		AND ai.contract_end < DATE_ADD(NOW(), INTERVAL 3 MONTH)
+		]]>
+		AND a.del_yn = 'N'
     </select>
 </mapper>
