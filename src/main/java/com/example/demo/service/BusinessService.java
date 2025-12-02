@@ -190,12 +190,24 @@ public class BusinessService {
 	public int AccountEctDietSave (Map<String, Object> paramMap) {
 		int iResult = 0;
 		iResult = businessMapper.AccountEctDietSave(paramMap);
-		
-//		if(iResult > 0) {
-//			// 고객사 관리 -> 식수현황 -> 추가 식단가 수정
-//			iResult += businessMapper.DinerNumberUpdate(paramMap);
-//		}
-		
+		return iResult;
+	}
+	// 영업 -> 일정관리 -> 영업팀 조회 
+	public List<Map<String, Object>> BusinessMemberList() {
+		List<Map<String, Object>> resultList = new ArrayList<>();
+		resultList = businessMapper.BusinessMemberList();
+		return resultList;
+	}
+	// 영업 -> 일정관리 -> 캘린더 조회
+	public List<Map<String, Object>> BusinessScheduleList(Map<String, Object> paramMap) {
+		List<Map<String, Object>> resultList = new ArrayList<>();
+		resultList = businessMapper.BusinessScheduleList(paramMap);
+		return resultList;
+	}
+	// 영업 -> 일정관리 -> 캘린더 저장
+	public int BusinessScheduleSave (Map<String, Object> paramMap) {
+		int iResult = 0;
+		iResult = businessMapper.BusinessScheduleSave(paramMap);
 		return iResult;
 	}
 }

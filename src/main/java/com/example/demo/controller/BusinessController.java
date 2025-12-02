@@ -780,20 +780,54 @@ public class BusinessController {
     	
     	return obj.toString();
     }
-//    
-//	@PostMapping("Business/AccountEctDietSave")
-//	private String AccountEctDietSave(@RequestParam Map<String, Object> paramMap) {
-//	    	
-//    	JsonObject obj =new JsonObject();
-//    	
-//    	if(businessService.AccountEctDietSave(paramMap) > 0) {
-//    		obj.addProperty("code", 200);
-//    		obj.addProperty("message", "성공");
-//    	} else {
-//    		obj.addProperty("code", 400);
-//    		obj.addProperty("message", "실패");
-//    	}
-//    	
-//    	return obj.toString();
-//    }
+    
+    /*
+     * part		: 영업
+     * method 	: BusinessMemberList
+     * comment 	: 영업관리 -> 일정관리 -> 영업팀 조회
+     */
+    @GetMapping("Business/BusinessMemberList")
+    public String BusinessMemberList(@RequestParam Map<String, Object> paramMap) {
+    	List<Map<String, Object>> resultList = new ArrayList<>();
+    	resultList = businessService.BusinessMemberList();
+    	
+    	return new Gson().toJson(resultList);
+    }
+    
+    /*
+     * part		: 영업
+     * method 	: BusinessScheduleList
+     * comment 	: 영업관리 -> 일정관리 -> 캘린더 조회
+     */
+    @GetMapping("Business/BusinessScheduleList")
+    public String BusinessScheduleList(@RequestParam Map<String, Object> paramMap) {
+    	List<Map<String, Object>> resultList = new ArrayList<>();
+    	resultList = businessService.BusinessScheduleList(paramMap);
+    	
+    	return new Gson().toJson(resultList);
+    }
+    
+    /* 
+	 * part		: 영업
+     * method 	: BusinessScheduleSave
+     * comment 	: 영업관리 -> 일정관리 -> 캘린더 저장
+     */
+	@PostMapping("Business/BusinessScheduleSave")
+	public String BusinessScheduleSave(@RequestBody Map<String, Object> paramMap) {
+		
+		int iResult = 0;
+		iResult = businessService.BusinessScheduleSave(paramMap);
+		
+		JsonObject obj =new JsonObject();
+    	
+    	if(iResult > 0) {
+			obj.addProperty("code", 200);
+			obj.addProperty("message", "성공");
+    	} else {
+    		obj.addProperty("code", 400);
+			obj.addProperty("message", "실패");
+    	}
+    	
+    	return obj.toString();
+	}
 }
