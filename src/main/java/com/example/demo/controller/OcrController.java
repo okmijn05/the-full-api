@@ -30,8 +30,9 @@ import com.google.cloud.documentai.v1.Document;
 
 @RestController
 @CrossOrigin(origins = {
-    "http://localhost:3000",       // 개발용
-    "http://172.30.1.48:8080"      // 운영 React
+    "http://localhost:3000",       	// 로컬
+    "http://172.30.1.48:8080",      // 개발 React
+    "http://52.64.151.137:8080"     // 운영 React
 })
 public class OcrController {
 
