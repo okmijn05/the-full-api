@@ -493,7 +493,7 @@
 				         ELSE ''
 				         END
 				  ) AS CHAR(255) CHARACTER SET utf8mb4
-				) AS members
+				) AS members,
 		        REPLACE(GROUP_CONCAT(DISTINCT subquery3.work_system, " : ", subquery3.work_cnt, "명 \n"), ',', '') as work_system
 				-- subquery3.note
 		        FROM (
