@@ -1843,3 +1843,650 @@ Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'schedule_d
 2025-12-02 16:47:06 [RMI TCP Connection(24)-127.0.0.1] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
 2025-12-02 16:47:07 [RMI TCP Connection(24)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2025-12-02 16:47:07 [RMI TCP Connection(24)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-12-02 16:47:17 [main] INFO  c.example.demo.TheFullApiApplication - Starting TheFullApiApplication using Java 17.0.15 with PID 4092 (C:\Users\손경원\git\the-full-api\bin\main started by 손경원 in C:\Users\손경원\git\the-full-api)
+2025-12-02 16:47:17 [main] DEBUG c.example.demo.TheFullApiApplication - Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-12-02 16:47:17 [main] INFO  c.example.demo.TheFullApiApplication - No active profile set, falling back to 1 default profile: "default"
+2025-12-02 16:47:18 [main] DEBUG o.m.s.b.a.MybatisAutoConfiguration - Searching for mappers annotated with @Mapper
+2025-12-02 16:47:18 [main] DEBUG o.m.s.b.a.MybatisAutoConfiguration - Using auto-configuration base package 'com.example.demo'
+2025-12-02 16:47:18 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [C:\Users\손경원\git\the-full-api\bin\main\com\example\demo\mapper\AccountMapper.class]
+2025-12-02 16:47:18 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [C:\Users\손경원\git\the-full-api\bin\main\com\example\demo\mapper\BusinessMapper.class]
+2025-12-02 16:47:18 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [C:\Users\손경원\git\the-full-api\bin\main\com\example\demo\mapper\HeadOfficeMapper.class]
+2025-12-02 16:47:18 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [C:\Users\손경원\git\the-full-api\bin\main\com\example\demo\mapper\OperateMapper.class]
+2025-12-02 16:47:18 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [C:\Users\손경원\git\the-full-api\bin\main\com\example\demo\mapper\UserMapper.class]
+2025-12-02 16:47:18 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'accountMapper' and 'com.example.demo.mapper.AccountMapper' mapperInterface
+2025-12-02 16:47:18 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'businessMapper' and 'com.example.demo.mapper.BusinessMapper' mapperInterface
+2025-12-02 16:47:18 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'headOfficeMapper' and 'com.example.demo.mapper.HeadOfficeMapper' mapperInterface
+2025-12-02 16:47:18 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'operateMapper' and 'com.example.demo.mapper.OperateMapper' mapperInterface
+2025-12-02 16:47:18 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userMapper' and 'com.example.demo.mapper.UserMapper' mapperInterface
+2025-12-02 16:47:18 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-12-02 16:47:18 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-12-02 16:47:18 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-12-02 16:47:18 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-12-02 16:47:18 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-12-02 16:47:18 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1009 ms
+2025-12-02 16:47:18 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [C:\Users\손경원\git\the-full-api\bin\main\mybatis-mapper\AccountMapper.xml]'
+2025-12-02 16:47:18 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [C:\Users\손경원\git\the-full-api\bin\main\mybatis-mapper\BusinessMapper.xml]'
+2025-12-02 16:47:18 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [C:\Users\손경원\git\the-full-api\bin\main\mybatis-mapper\HeadOfficeMapper.xml]'
+2025-12-02 16:47:18 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [C:\Users\손경원\git\the-full-api\bin\main\mybatis-mapper\OperateMapper.xml]'
+2025-12-02 16:47:18 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [C:\Users\손경원\git\the-full-api\bin\main\mybatis-mapper\UserMapper.xml]'
+2025-12-02 16:47:20 [main] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 16:47:20 [main] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@638d2ce3] was not registered for synchronization because synchronization is not active
+2025-12-02 16:47:20 [main] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 16:47:20 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-12-02 16:47:20 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@44c27b8b
+2025-12-02 16:47:20 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-12-02 16:47:20 [main] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1155023635 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 16:47:20 [main] DEBUG c.e.d.m.A.BatchForPayBack - ==>  Preparing: SELECT account_id, total_days, total_days * 0.15 AS payback_price, count_year as year, count_month as month FROM ( SELECT account_id, (COALESCE(day_1, 0) + COALESCE(day_2, 0) + COALESCE(day_3, 0) + COALESCE(day_4, 0) + COALESCE(day_5, 0) + COALESCE(day_6, 0) + COALESCE(day_7, 0) + COALESCE(day_8, 0) + COALESCE(day_9, 0) + COALESCE(day_10, 0) + COALESCE(day_11, 0) + COALESCE(day_12, 0) + COALESCE(day_13, 0) + COALESCE(day_14, 0) + COALESCE(day_15, 0) + COALESCE(day_16, 0) + COALESCE(day_17, 0) + COALESCE(day_18, 0) + COALESCE(day_19, 0) + COALESCE(day_20, 0) + COALESCE(day_21, 0) + COALESCE(day_22, 0) + COALESCE(day_23, 0) + COALESCE(day_24, 0) + COALESCE(day_25, 0) + COALESCE(day_26, 0) + COALESCE(day_27, 0) + COALESCE(day_28, 0) + COALESCE(day_29, 0) + COALESCE(day_30, 0) + COALESCE(day_31, 0) ) AS total_days, count_year, count_month FROM tb_account_tally_sheet WHERE count_year = ? AND count_month = ? AND type = 2 ) AS t
+2025-12-02 16:47:20 [main] DEBUG c.e.d.m.A.BatchForPayBack - ==> Parameters: 2025(Integer), 10(String)
+2025-12-02 16:47:20 [main] DEBUG c.e.d.m.A.BatchForPayBack - <==      Total: 1
+2025-12-02 16:47:20 [main] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@638d2ce3]
+2025-12-02 16:47:20 [main] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 16:47:20 [main] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7adff6cb] was not registered for synchronization because synchronization is not active
+2025-12-02 16:47:20 [main] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 16:47:20 [main] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@357886628 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 16:47:20 [main] DEBUG c.e.d.m.H.ProfitLossTableSave - ==>  Preparing: INSERT INTO tb_account_managerment_table ( account_id, year, month, living_estimate, living_estimate_ratio, basic_estimate, basic_estimate_ratio, living_cost, living_ratio, basic_cost, basic_ratio, employ_cost, employ_ratio, daycare_cost, daycare_ratio, daycare_emp_cost, daycare_emp_ratio, payback_price, payback_ratio, duty_secure, duty_secure_ratio, food_process, food_trash_ratio, dishwasher, dishwasher_ratio, cesco, cesco_ratio, water_puri, water_ratio, utility_bills, utility_ratio, food_cost, food_ratio, etc_cost, etc_ratio, estimate_total, estimate_total_ratio, dispatch_cost, dispatch_ratio, person_cost, person_ratio, sales_total, sales_total_ratio, purchase_total, purchase_total_ratio, person_total, person_total_ratio, indirect_total, indirect_total_ratio, business_profit, business_profit_ratio, update_dt ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW() ) ON DUPLICATE KEY UPDATE payback_price = ?, update_dt = NOW()
+2025-12-02 16:47:20 [main] DEBUG c.e.d.m.H.ProfitLossTableSave - ==> Parameters: 20250819193455(String), 2025(String), 10(String), null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1671309.00(BigDecimal), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1671309.00(BigDecimal)
+2025-12-02 16:47:20 [main] DEBUG c.e.d.m.H.ProfitLossTableSave - <==    Updates: 1
+2025-12-02 16:47:20 [main] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7adff6cb]
+2025-12-02 16:47:20 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 99 mappings in 'requestMappingHandlerMapping'
+2025-12-02 16:47:20 [main] DEBUG o.m.s.b.a.MybatisAutoConfiguration - Not found configuration for registering mapper bean using @MapperScan, MapperFactoryBean and MapperScannerConfigurer.
+2025-12-02 16:47:21 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-12-02 16:47:21 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-12-02 16:47:21 [main] INFO  c.example.demo.TheFullApiApplication - Started TheFullApiApplication in 3.729 seconds (process running for 4.302)
+2025-12-02 16:50:39 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-02 16:50:39 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-12-02 16:50:39 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-12-02 16:50:39 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 16:50:39 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 16:50:39 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@34e26cf] was not registered for synchronization because synchronization is not active
+2025-12-02 16:50:39 [http-nio-8080-exec-2] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 16:50:39 [http-nio-8080-exec-2] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1651013507 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 16:50:39 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 16:50:39 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 16:50:39 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 16:50:39 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@34e26cf]
+2025-12-02 16:50:39 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 16:50:39 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 16:50:39 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@17ecbef2] was not registered for synchronization because synchronization is not active
+2025-12-02 16:50:39 [http-nio-8080-exec-2] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 16:50:39 [http-nio-8080-exec-2] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1863565922 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 16:50:39 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 16:50:39 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 16:50:39 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 16:50:39 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@17ecbef2]
+2025-12-02 16:55:05 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 16:55:05 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 16:55:05 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7ed2db3b] was not registered for synchronization because synchronization is not active
+2025-12-02 16:55:05 [http-nio-8080-exec-3] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 16:55:05 [http-nio-8080-exec-3] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1880435345 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 16:55:05 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 16:55:05 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 16:55:05 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 16:55:05 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7ed2db3b]
+2025-12-02 16:55:05 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 16:55:05 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 16:55:05 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@499e40f9] was not registered for synchronization because synchronization is not active
+2025-12-02 16:55:05 [http-nio-8080-exec-4] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 16:55:05 [http-nio-8080-exec-4] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1197057978 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 16:55:05 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 16:55:05 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 16:55:05 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 16:55:05 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@499e40f9]
+2025-12-02 16:55:48 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 16:55:48 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 16:55:48 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@13ca87fa] was not registered for synchronization because synchronization is not active
+2025-12-02 16:55:48 [http-nio-8080-exec-5] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 16:55:48 [http-nio-8080-exec-5] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@487418867 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 16:55:48 [http-nio-8080-exec-5] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 16:55:48 [http-nio-8080-exec-5] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 16:55:48 [http-nio-8080-exec-5] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 16:55:48 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@13ca87fa]
+2025-12-02 16:55:48 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 16:55:48 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 16:55:48 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5f97cdd5] was not registered for synchronization because synchronization is not active
+2025-12-02 16:55:48 [http-nio-8080-exec-6] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 16:55:48 [http-nio-8080-exec-6] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1364207703 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 16:55:48 [http-nio-8080-exec-6] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 16:55:48 [http-nio-8080-exec-6] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 16:55:48 [http-nio-8080-exec-6] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 16:55:48 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5f97cdd5]
+2025-12-02 16:56:41 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 16:56:41 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 16:56:41 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@20ac6726] was not registered for synchronization because synchronization is not active
+2025-12-02 16:56:41 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 16:56:41 [http-nio-8080-exec-7] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@778804547 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 16:56:41 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 16:56:41 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 16:56:41 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 16:56:41 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@20ac6726]
+2025-12-02 16:56:41 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 16:56:41 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 16:56:41 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3f35855b] was not registered for synchronization because synchronization is not active
+2025-12-02 16:56:41 [http-nio-8080-exec-8] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 16:56:41 [http-nio-8080-exec-8] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@837975245 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 16:56:41 [http-nio-8080-exec-8] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 16:56:41 [http-nio-8080-exec-8] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 16:56:41 [http-nio-8080-exec-8] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 16:56:41 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3f35855b]
+2025-12-02 16:57:30 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 16:57:30 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 16:57:30 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7dfdead6] was not registered for synchronization because synchronization is not active
+2025-12-02 16:57:30 [http-nio-8080-exec-9] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 16:57:30 [http-nio-8080-exec-9] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1933187865 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 16:57:30 [http-nio-8080-exec-9] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 16:57:30 [http-nio-8080-exec-9] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 16:57:30 [http-nio-8080-exec-9] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 16:57:30 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7dfdead6]
+2025-12-02 16:57:30 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 16:57:30 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 16:57:30 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2057fc76] was not registered for synchronization because synchronization is not active
+2025-12-02 16:57:30 [http-nio-8080-exec-10] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 16:57:30 [http-nio-8080-exec-10] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@781194764 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 16:57:30 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 16:57:30 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 16:57:30 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 16:57:30 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2057fc76]
+2025-12-02 16:58:10 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 16:58:10 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 16:58:10 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6d2de7e2] was not registered for synchronization because synchronization is not active
+2025-12-02 16:58:10 [http-nio-8080-exec-2] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 16:58:10 [http-nio-8080-exec-2] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@655694851 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 16:58:10 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 16:58:10 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 16:58:10 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 16:58:10 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6d2de7e2]
+2025-12-02 16:58:10 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 16:58:10 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 16:58:10 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e483002] was not registered for synchronization because synchronization is not active
+2025-12-02 16:58:10 [http-nio-8080-exec-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 16:58:10 [http-nio-8080-exec-1] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@546294715 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 16:58:10 [http-nio-8080-exec-1] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 16:58:10 [http-nio-8080-exec-1] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 16:58:10 [http-nio-8080-exec-1] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 16:58:10 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e483002]
+2025-12-02 16:58:25 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 16:58:25 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 16:58:25 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4fc13f50] was not registered for synchronization because synchronization is not active
+2025-12-02 16:58:25 [http-nio-8080-exec-3] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 16:58:25 [http-nio-8080-exec-3] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@987691546 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 16:58:25 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 16:58:25 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 16:58:25 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 16:58:25 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4fc13f50]
+2025-12-02 16:58:25 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 16:58:25 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 16:58:25 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@664ad81] was not registered for synchronization because synchronization is not active
+2025-12-02 16:58:25 [http-nio-8080-exec-4] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 16:58:25 [http-nio-8080-exec-4] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1036434492 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 16:58:25 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 16:58:25 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 16:58:25 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 16:58:25 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@664ad81]
+2025-12-02 16:59:44 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 16:59:44 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 16:59:44 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@21373028] was not registered for synchronization because synchronization is not active
+2025-12-02 16:59:44 [http-nio-8080-exec-6] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 16:59:44 [http-nio-8080-exec-6] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@747496654 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 16:59:44 [http-nio-8080-exec-6] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 16:59:44 [http-nio-8080-exec-6] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 16:59:44 [http-nio-8080-exec-6] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 16:59:44 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@21373028]
+2025-12-02 16:59:44 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 16:59:44 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 16:59:44 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@f796837] was not registered for synchronization because synchronization is not active
+2025-12-02 16:59:44 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 16:59:44 [http-nio-8080-exec-7] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@554761835 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 16:59:44 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 16:59:44 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 16:59:44 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 16:59:44 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@f796837]
+2025-12-02 17:00:59 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:00:59 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:00:59 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@32071122] was not registered for synchronization because synchronization is not active
+2025-12-02 17:00:59 [http-nio-8080-exec-9] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:00:59 [http-nio-8080-exec-9] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@540997358 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 17:00:59 [http-nio-8080-exec-9] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:00:59 [http-nio-8080-exec-9] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:00:59 [http-nio-8080-exec-9] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:00:59 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@32071122]
+2025-12-02 17:00:59 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:00:59 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:00:59 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6fad1c37] was not registered for synchronization because synchronization is not active
+2025-12-02 17:00:59 [http-nio-8080-exec-10] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:00:59 [http-nio-8080-exec-10] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1879501304 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 17:00:59 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:00:59 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:00:59 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:00:59 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6fad1c37]
+2025-12-02 17:01:12 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:01:12 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:01:12 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4a79a427] was not registered for synchronization because synchronization is not active
+2025-12-02 17:01:12 [http-nio-8080-exec-2] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:01:12 [http-nio-8080-exec-2] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1214859389 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 17:01:12 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:01:12 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:01:12 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:01:12 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4a79a427]
+2025-12-02 17:01:12 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:01:12 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:01:12 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@61b2c180] was not registered for synchronization because synchronization is not active
+2025-12-02 17:01:12 [http-nio-8080-exec-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:01:12 [http-nio-8080-exec-1] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@236270996 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 17:01:12 [http-nio-8080-exec-1] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:01:12 [http-nio-8080-exec-1] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:01:12 [http-nio-8080-exec-1] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:01:12 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@61b2c180]
+2025-12-02 17:03:05 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:03:05 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:03:05 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6253e9e1] was not registered for synchronization because synchronization is not active
+2025-12-02 17:03:05 [http-nio-8080-exec-4] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:03:05 [http-nio-8080-exec-4] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@889020480 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 17:03:05 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:03:05 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:03:05 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:03:05 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6253e9e1]
+2025-12-02 17:03:05 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:03:05 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:03:05 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5c3061c8] was not registered for synchronization because synchronization is not active
+2025-12-02 17:03:05 [http-nio-8080-exec-5] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:03:05 [http-nio-8080-exec-5] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@453167331 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 17:03:05 [http-nio-8080-exec-5] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:03:05 [http-nio-8080-exec-5] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:03:05 [http-nio-8080-exec-5] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:03:05 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5c3061c8]
+2025-12-02 17:09:21 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:09:21 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:09:21 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4fcbf2e1] was not registered for synchronization because synchronization is not active
+2025-12-02 17:09:21 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:09:21 [http-nio-8080-exec-7] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@188158975 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 17:09:21 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:09:21 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:09:21 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:09:21 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4fcbf2e1]
+2025-12-02 17:09:21 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:09:21 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:09:21 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@70cf76f6] was not registered for synchronization because synchronization is not active
+2025-12-02 17:09:21 [http-nio-8080-exec-8] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:09:21 [http-nio-8080-exec-8] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1665346281 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 17:09:21 [http-nio-8080-exec-8] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:09:21 [http-nio-8080-exec-8] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:09:21 [http-nio-8080-exec-8] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:09:21 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@70cf76f6]
+2025-12-02 17:10:16 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:10:16 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:10:16 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@582c7a4b] was not registered for synchronization because synchronization is not active
+2025-12-02 17:10:16 [http-nio-8080-exec-9] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:10:16 [http-nio-8080-exec-9] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1378414189 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 17:10:16 [http-nio-8080-exec-9] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:10:16 [http-nio-8080-exec-9] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:10:16 [http-nio-8080-exec-9] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:10:16 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@582c7a4b]
+2025-12-02 17:10:16 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:10:16 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:10:16 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@8c91af2] was not registered for synchronization because synchronization is not active
+2025-12-02 17:10:16 [http-nio-8080-exec-10] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:10:16 [http-nio-8080-exec-10] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@260236152 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 17:10:16 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:10:16 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:10:16 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:10:16 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@8c91af2]
+2025-12-02 17:10:29 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:10:29 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:10:29 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3bdaeb8d] was not registered for synchronization because synchronization is not active
+2025-12-02 17:10:29 [http-nio-8080-exec-2] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:10:29 [http-nio-8080-exec-2] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1006975053 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 17:10:29 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:10:29 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:10:29 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:10:29 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3bdaeb8d]
+2025-12-02 17:10:29 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:10:29 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:10:29 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@76544f44] was not registered for synchronization because synchronization is not active
+2025-12-02 17:10:29 [http-nio-8080-exec-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:10:29 [http-nio-8080-exec-1] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@27082447 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 17:10:29 [http-nio-8080-exec-1] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:10:29 [http-nio-8080-exec-1] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:10:29 [http-nio-8080-exec-1] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:10:29 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@76544f44]
+2025-12-02 17:10:53 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:10:53 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:10:53 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@443bdbc3] was not registered for synchronization because synchronization is not active
+2025-12-02 17:10:53 [http-nio-8080-exec-3] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:10:53 [http-nio-8080-exec-3] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1593500269 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 17:10:53 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:10:53 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:10:53 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:10:53 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@443bdbc3]
+2025-12-02 17:10:53 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:10:53 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:10:53 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3f3188e4] was not registered for synchronization because synchronization is not active
+2025-12-02 17:10:53 [http-nio-8080-exec-4] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:10:53 [http-nio-8080-exec-4] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1120952834 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 17:10:53 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:10:53 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:10:53 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:10:53 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3f3188e4]
+2025-12-02 17:10:55 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessMemberList(Map)
+2025-12-02 17:10:55 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:10:55 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@63fe8d11] was not registered for synchronization because synchronization is not active
+2025-12-02 17:10:55 [http-nio-8080-exec-5] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:10:55 [http-nio-8080-exec-5] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1008705159 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 17:10:55 [http-nio-8080-exec-5] DEBUG c.e.d.m.B.BusinessMemberList - ==>  Preparing: SELECT * FROM tb_user WHERE department = 4 AND del_yn = 'N' ORDER BY position ASC
+2025-12-02 17:10:55 [http-nio-8080-exec-5] DEBUG c.e.d.m.B.BusinessMemberList - ==> Parameters: 
+2025-12-02 17:10:55 [http-nio-8080-exec-5] DEBUG c.e.d.m.B.BusinessMemberList - <==      Total: 4
+2025-12-02 17:10:55 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@63fe8d11]
+2025-12-02 17:11:22 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:11:22 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:11:22 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2ad53183] was not registered for synchronization because synchronization is not active
+2025-12-02 17:11:22 [http-nio-8080-exec-6] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:11:22 [http-nio-8080-exec-6] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1371056373 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 17:11:22 [http-nio-8080-exec-6] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:11:22 [http-nio-8080-exec-6] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:11:22 [http-nio-8080-exec-6] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:11:22 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2ad53183]
+2025-12-02 17:11:22 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:11:22 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:11:22 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1904ddaa] was not registered for synchronization because synchronization is not active
+2025-12-02 17:11:22 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:11:22 [http-nio-8080-exec-7] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@155740305 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 17:11:22 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:11:22 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:11:22 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:11:22 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1904ddaa]
+2025-12-02 17:11:24 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessMemberList(Map)
+2025-12-02 17:11:24 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:11:24 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1b1324eb] was not registered for synchronization because synchronization is not active
+2025-12-02 17:11:24 [http-nio-8080-exec-8] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:11:24 [http-nio-8080-exec-8] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@283150777 wrapping com.mysql.cj.jdbc.ConnectionImpl@44c27b8b] will not be managed by Spring
+2025-12-02 17:11:24 [http-nio-8080-exec-8] DEBUG c.e.d.m.B.BusinessMemberList - ==>  Preparing: SELECT * FROM tb_user WHERE department = 4 AND del_yn = 'N' ORDER BY position ASC
+2025-12-02 17:11:24 [http-nio-8080-exec-8] DEBUG c.e.d.m.B.BusinessMemberList - ==> Parameters: 
+2025-12-02 17:11:24 [http-nio-8080-exec-8] DEBUG c.e.d.m.B.BusinessMemberList - <==      Total: 4
+2025-12-02 17:11:24 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1b1324eb]
+2025-12-02 17:19:26 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:19:26 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:19:26 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53132e6b] was not registered for synchronization because synchronization is not active
+2025-12-02 17:19:26 [http-nio-8080-exec-10] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:19:26 [http-nio-8080-exec-10] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@332247153 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:19:26 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:19:26 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:19:26 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:19:26 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53132e6b]
+2025-12-02 17:19:26 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:19:26 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:19:26 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@64e7aaaa] was not registered for synchronization because synchronization is not active
+2025-12-02 17:19:26 [http-nio-8080-exec-2] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:19:26 [http-nio-8080-exec-2] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@135115576 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:19:26 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:19:26 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:19:26 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:19:26 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@64e7aaaa]
+2025-12-02 17:21:52 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:21:52 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:21:52 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@74450e98] was not registered for synchronization because synchronization is not active
+2025-12-02 17:21:52 [http-nio-8080-exec-3] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:21:52 [http-nio-8080-exec-3] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1857693200 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:21:52 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:21:52 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:21:52 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:21:52 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@74450e98]
+2025-12-02 17:21:52 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:21:52 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:21:52 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@13641e] was not registered for synchronization because synchronization is not active
+2025-12-02 17:21:52 [http-nio-8080-exec-4] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:21:52 [http-nio-8080-exec-4] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@861317712 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:21:52 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:21:52 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:21:52 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:21:52 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@13641e]
+2025-12-02 17:23:20 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:23:20 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:23:20 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@151fb099] was not registered for synchronization because synchronization is not active
+2025-12-02 17:23:20 [http-nio-8080-exec-6] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:23:20 [http-nio-8080-exec-6] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@382059152 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:23:20 [http-nio-8080-exec-6] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:23:20 [http-nio-8080-exec-6] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:23:20 [http-nio-8080-exec-6] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:23:20 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@151fb099]
+2025-12-02 17:23:20 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:23:20 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:23:20 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5240245] was not registered for synchronization because synchronization is not active
+2025-12-02 17:23:20 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:23:20 [http-nio-8080-exec-7] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@980580038 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:23:20 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:23:20 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:23:20 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:23:20 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5240245]
+2025-12-02 17:23:58 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:23:58 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:23:58 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@22151c1] was not registered for synchronization because synchronization is not active
+2025-12-02 17:23:58 [http-nio-8080-exec-8] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:23:58 [http-nio-8080-exec-8] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1509650 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:23:58 [http-nio-8080-exec-8] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:23:58 [http-nio-8080-exec-8] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:23:58 [http-nio-8080-exec-8] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:23:58 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@22151c1]
+2025-12-02 17:23:58 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:23:58 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:23:58 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@786dc616] was not registered for synchronization because synchronization is not active
+2025-12-02 17:23:58 [http-nio-8080-exec-9] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:23:58 [http-nio-8080-exec-9] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1126700402 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:23:58 [http-nio-8080-exec-9] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:23:58 [http-nio-8080-exec-9] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:23:58 [http-nio-8080-exec-9] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:23:58 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@786dc616]
+2025-12-02 17:24:28 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:24:28 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:24:28 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6dd45fdb] was not registered for synchronization because synchronization is not active
+2025-12-02 17:24:28 [http-nio-8080-exec-10] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:24:28 [http-nio-8080-exec-10] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@325329960 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:24:28 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:24:28 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:24:28 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:24:28 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6dd45fdb]
+2025-12-02 17:24:28 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:24:28 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:24:28 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4e0996ba] was not registered for synchronization because synchronization is not active
+2025-12-02 17:24:28 [http-nio-8080-exec-2] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:24:28 [http-nio-8080-exec-2] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@392349483 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:24:28 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:24:28 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:24:28 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:24:28 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4e0996ba]
+2025-12-02 17:24:46 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:24:46 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:24:46 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@39aa35d6] was not registered for synchronization because synchronization is not active
+2025-12-02 17:24:46 [http-nio-8080-exec-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:24:46 [http-nio-8080-exec-1] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1833984968 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:24:46 [http-nio-8080-exec-1] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:24:46 [http-nio-8080-exec-1] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:24:46 [http-nio-8080-exec-1] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:24:46 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@39aa35d6]
+2025-12-02 17:24:47 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:24:47 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:24:47 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@75854088] was not registered for synchronization because synchronization is not active
+2025-12-02 17:24:47 [http-nio-8080-exec-3] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:24:47 [http-nio-8080-exec-3] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@703111534 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:24:47 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:24:47 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:24:47 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:24:47 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@75854088]
+2025-12-02 17:25:24 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:25:24 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:25:24 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6816ee4d] was not registered for synchronization because synchronization is not active
+2025-12-02 17:25:24 [http-nio-8080-exec-4] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:25:24 [http-nio-8080-exec-4] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1933464773 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:25:24 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:25:24 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:25:24 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:25:24 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6816ee4d]
+2025-12-02 17:25:24 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:25:24 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:25:24 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6ffb8aec] was not registered for synchronization because synchronization is not active
+2025-12-02 17:25:24 [http-nio-8080-exec-5] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:25:24 [http-nio-8080-exec-5] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@2029650951 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:25:24 [http-nio-8080-exec-5] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:25:24 [http-nio-8080-exec-5] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:25:24 [http-nio-8080-exec-5] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:25:24 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6ffb8aec]
+2025-12-02 17:26:00 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:26:00 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:26:00 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6c430dc3] was not registered for synchronization because synchronization is not active
+2025-12-02 17:26:00 [http-nio-8080-exec-6] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:26:00 [http-nio-8080-exec-6] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@70316970 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:26:00 [http-nio-8080-exec-6] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:26:00 [http-nio-8080-exec-6] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:26:00 [http-nio-8080-exec-6] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:26:00 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6c430dc3]
+2025-12-02 17:26:00 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:26:00 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:26:00 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5391df19] was not registered for synchronization because synchronization is not active
+2025-12-02 17:26:00 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:26:00 [http-nio-8080-exec-7] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1979898116 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:26:00 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:26:00 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:26:00 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:26:00 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5391df19]
+2025-12-02 17:26:28 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:26:28 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:26:28 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@9d40dde] was not registered for synchronization because synchronization is not active
+2025-12-02 17:26:28 [http-nio-8080-exec-8] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:26:28 [http-nio-8080-exec-8] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@32762492 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:26:28 [http-nio-8080-exec-8] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:26:28 [http-nio-8080-exec-8] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:26:28 [http-nio-8080-exec-8] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:26:28 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@9d40dde]
+2025-12-02 17:26:28 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:26:28 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:26:28 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@64780d9b] was not registered for synchronization because synchronization is not active
+2025-12-02 17:26:28 [http-nio-8080-exec-9] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:26:28 [http-nio-8080-exec-9] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1915959924 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:26:28 [http-nio-8080-exec-9] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:26:28 [http-nio-8080-exec-9] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:26:28 [http-nio-8080-exec-9] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:26:28 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@64780d9b]
+2025-12-02 17:27:03 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:27:03 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:27:03 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2dc325ab] was not registered for synchronization because synchronization is not active
+2025-12-02 17:27:03 [http-nio-8080-exec-10] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:27:03 [http-nio-8080-exec-10] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1646697807 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:27:03 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:27:03 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:27:03 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:27:03 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2dc325ab]
+2025-12-02 17:27:03 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:27:03 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:27:03 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@16015fff] was not registered for synchronization because synchronization is not active
+2025-12-02 17:27:03 [http-nio-8080-exec-2] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:27:03 [http-nio-8080-exec-2] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@339720131 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:27:03 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:27:03 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:27:03 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:27:03 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@16015fff]
+2025-12-02 17:27:19 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:27:19 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:27:19 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3b793d56] was not registered for synchronization because synchronization is not active
+2025-12-02 17:27:19 [http-nio-8080-exec-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:27:19 [http-nio-8080-exec-1] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1402317674 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:27:19 [http-nio-8080-exec-1] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:27:19 [http-nio-8080-exec-1] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:27:19 [http-nio-8080-exec-1] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:27:19 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3b793d56]
+2025-12-02 17:27:19 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:27:19 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:27:19 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@23734956] was not registered for synchronization because synchronization is not active
+2025-12-02 17:27:19 [http-nio-8080-exec-3] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:27:19 [http-nio-8080-exec-3] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@2083376304 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:27:19 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:27:19 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:27:19 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:27:19 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@23734956]
+2025-12-02 17:27:39 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:27:39 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:27:39 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3fd3016b] was not registered for synchronization because synchronization is not active
+2025-12-02 17:27:39 [http-nio-8080-exec-4] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:27:39 [http-nio-8080-exec-4] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1625875546 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:27:39 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:27:39 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:27:39 [http-nio-8080-exec-4] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:27:39 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3fd3016b]
+2025-12-02 17:27:39 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:27:39 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:27:39 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@31eed3a0] was not registered for synchronization because synchronization is not active
+2025-12-02 17:27:39 [http-nio-8080-exec-5] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:27:39 [http-nio-8080-exec-5] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@40993691 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:27:39 [http-nio-8080-exec-5] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:27:39 [http-nio-8080-exec-5] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:27:39 [http-nio-8080-exec-5] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:27:39 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@31eed3a0]
+2025-12-02 17:27:46 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:27:46 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:27:46 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4ff9e30f] was not registered for synchronization because synchronization is not active
+2025-12-02 17:27:46 [http-nio-8080-exec-6] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:27:46 [http-nio-8080-exec-6] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@992006694 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:27:46 [http-nio-8080-exec-6] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:27:46 [http-nio-8080-exec-6] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:27:46 [http-nio-8080-exec-6] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:27:46 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4ff9e30f]
+2025-12-02 17:27:46 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:27:46 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:27:46 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@b604005] was not registered for synchronization because synchronization is not active
+2025-12-02 17:27:46 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:27:46 [http-nio-8080-exec-7] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1448357735 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:27:46 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:27:46 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:27:46 [http-nio-8080-exec-7] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:27:46 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@b604005]
+2025-12-02 17:28:16 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:28:16 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:28:16 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5a769fa6] was not registered for synchronization because synchronization is not active
+2025-12-02 17:28:16 [http-nio-8080-exec-8] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:28:16 [http-nio-8080-exec-8] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1944437707 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:28:16 [http-nio-8080-exec-8] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:28:16 [http-nio-8080-exec-8] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:28:16 [http-nio-8080-exec-8] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:28:16 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5a769fa6]
+2025-12-02 17:28:16 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:28:16 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:28:16 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1132fd2f] was not registered for synchronization because synchronization is not active
+2025-12-02 17:28:16 [http-nio-8080-exec-9] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:28:16 [http-nio-8080-exec-9] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@889335367 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:28:16 [http-nio-8080-exec-9] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:28:16 [http-nio-8080-exec-9] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:28:16 [http-nio-8080-exec-9] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:28:16 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1132fd2f]
+2025-12-02 17:28:24 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:28:24 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:28:24 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@25e16fca] was not registered for synchronization because synchronization is not active
+2025-12-02 17:28:24 [http-nio-8080-exec-10] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:28:24 [http-nio-8080-exec-10] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@297531552 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:28:24 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:28:24 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:28:24 [http-nio-8080-exec-10] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:28:24 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@25e16fca]
+2025-12-02 17:28:24 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:28:24 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:28:24 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7e093692] was not registered for synchronization because synchronization is not active
+2025-12-02 17:28:24 [http-nio-8080-exec-2] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:28:24 [http-nio-8080-exec-2] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1651204107 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:28:24 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:28:24 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:28:24 [http-nio-8080-exec-2] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:28:24 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7e093692]
+2025-12-02 17:28:34 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:28:34 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:28:34 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@22e60ca5] was not registered for synchronization because synchronization is not active
+2025-12-02 17:28:34 [http-nio-8080-exec-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:28:34 [http-nio-8080-exec-1] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1342637602 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:28:34 [http-nio-8080-exec-1] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:28:34 [http-nio-8080-exec-1] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:28:34 [http-nio-8080-exec-1] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:28:34 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@22e60ca5]
+2025-12-02 17:28:34 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.BusinessController#BusinessScheduleList(Map)
+2025-12-02 17:28:34 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-12-02 17:28:34 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6ac249db] was not registered for synchronization because synchronization is not active
+2025-12-02 17:28:34 [http-nio-8080-exec-3] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2025-12-02 17:28:34 [http-nio-8080-exec-3] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1396872236 wrapping com.mysql.cj.jdbc.ConnectionImpl@bcc1853] will not be managed by Spring
+2025-12-02 17:28:34 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - ==>  Preparing: SELECT bc.idx, DATE_FORMAT(bc.schedule_date, '%Y-%m-%d') as schedule_date, bc.content, bc.type, bc.del_yn, bc.update_dt, bc.reg_dt, bc.user_id, bc.reg_user_id, u.user_name FROM tb_business_calendar bc JOIN tb_user u ON u.user_id = bc.user_id WHERE DATE_FORMAT(schedule_date, '%Y-%m') = CONCAT(?,'-',?)
+2025-12-02 17:28:34 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - ==> Parameters: 2025(String), 12(String)
+2025-12-02 17:28:34 [http-nio-8080-exec-3] DEBUG c.e.d.m.B.BusinessScheduleList - <==      Total: 5
+2025-12-02 17:28:34 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6ac249db]
