@@ -38,7 +38,7 @@ public class UserController {
     	
     	System.out.println(resultMap.get("status_code").toString());
     	
-    	if(resultMap.get("-").toString().equals("400")) {
+    	if(resultMap.get("status_code").toString().equals("400")) {
     		obj.addProperty("code", resultMap.get("status_code").toString());
     		obj.addProperty("msg", "아이디 혹은 비밀번호를 확인하세요.");
         	
