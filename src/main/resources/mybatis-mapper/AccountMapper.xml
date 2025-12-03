@@ -12,11 +12,12 @@
 			   account_rqd_member,
 			   account_headcount
 		FROM tb_account
+		WHERE del_yn = 'N'
 		<if test='accountType == 0'>
-			WHERE account_type in (1,2,4)
+			AND account_type in (1,2,4)
  		</if>
  		<if test='accountType != 0'>
-			WHERE account_type = #{accountType}
+			AND account_type = #{accountType}
  		</if>
 	</select>
 	
