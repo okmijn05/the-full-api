@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,11 +35,10 @@ public class UserController {
     	
     	Map<String, Object> resultMap =  userService.Login(map);
     	JsonObject obj = new JsonObject();
-    	JsonObject data = new JsonObject();
     	
     	System.out.println(resultMap.get("status_code").toString());
     	
-    	if(resultMap.get("status_code").toString().equals("400")) {
+    	if(resultMap.get("-").toString().equals("400")) {
     		obj.addProperty("code", resultMap.get("status_code").toString());
     		obj.addProperty("msg", "아이디 혹은 비밀번호를 확인하세요.");
         	
@@ -68,9 +66,6 @@ public class UserController {
 		// info, detail 꺼내기
 	    Map<String, Object> info   = (Map<String, Object>) paramMap.get("info");
 	    Map<String, Object> detail = (Map<String, Object>) paramMap.get("detail");
-
-	    System.out.println(info);
-	    System.out.println(detail);
 	    
 	    iResult += userService.UserRgt(info);
 	    iResult += userService.UserRgtDetail(detail);
