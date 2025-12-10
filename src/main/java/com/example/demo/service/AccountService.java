@@ -90,6 +90,18 @@ public class AccountService {
 		iResult = accountMapper.AccountDispatchMemberSave(paramMap);
 		return iResult;
 	}
+	// 거래처 -> 출근부 -> 연차대장 저장
+	public int AccountAnnualLeaveLedgerSave(Map<String, Object> paramMap) {
+		int iResult = 0;
+		iResult = accountMapper.AccountAnnualLeaveLedgerSave(paramMap);
+		return iResult;
+	}
+	// 거래처 -> 출근부 -> 초과대장 저장
+	public int AccountOverTimeLedgerSave(Map<String, Object> paramMap) {
+		int iResult = 0;
+		iResult = accountMapper.AccountOverTimeLedgerSave(paramMap);
+		return iResult;
+	}
 	// 거래처 -> 기물리스트 조회
 	public List<Map<String, Object>> AccountPropertiesList(Map<String, Object> paramMap) {
 		List<Map<String, Object>> resultList = new ArrayList<>();

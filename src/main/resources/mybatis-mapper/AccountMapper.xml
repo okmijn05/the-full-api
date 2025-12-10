@@ -8,13 +8,13 @@
 		SELECT account_id, 
 			   account_name, 
 			   concat(ifnull(account_address,''), ' ', ifnull(account_address_detail,'')) as account_address,
-			   case account_type when 1 then '위탁급식' when 2 then '도소매' when 3 then '프랜차이즈' when 4 then '산업체' else '미분류' end as account_type, 
+			   case account_type when 1 then '위탁급식' when 2 then '도소매' when 3 then '프랜차이즈' when 4 then '산업체' else '학교' end as account_type, 
 			   account_rqd_member,
 			   account_headcount
 		FROM tb_account
 		WHERE del_yn = 'N'
 		<if test='accountType == 0'>
-			AND account_type in (1,2,4)
+			AND account_type in (1,2,4,5)
  		</if>
  		<if test='accountType != 0'>
 			AND account_type = #{accountType}
@@ -421,8 +421,7 @@
         		DATE_FORMAT(T2.contract_end, '%Y-%m-%d') as contract_end,
         		T.account_type,
         		T.meal_type,
-        		T2.industry_note,
-        		T2.working_day
+        		T2.industry_note
 		FROM tb_account T
 		LEFT OUTER JOIN tb_account_info T2
 		ON T.account_id = T2.account_id
@@ -654,8 +653,7 @@
 	        extra_diet2_price,
 	        extra_diet3_price,
 	        extra_diet4_price,
-	        extra_diet5_price,
-	        working_day
+	        extra_diet5_price
 	    </trim>
 	    
 	    VALUES
@@ -718,8 +716,7 @@
 	        #{extra_diet2_price},
 	        #{extra_diet3_price},
 	        #{extra_diet4_price},
-	        #{extra_diet5_price},
-	        #{working_day}
+	        #{extra_diet5_price}
 	    </trim>
 	    ON DUPLICATE KEY UPDATE
 	    <trim suffixOverrides=",">
@@ -780,8 +777,7 @@
 	        extra_diet2_price=#{extra_diet2_price},
 	        extra_diet3_price=#{extra_diet3_price},
 	        extra_diet4_price=#{extra_diet4_price},
-	        extra_diet5_price=#{extra_diet5_price},
-	        working_day=#{working_day}
+	        extra_diet5_price=#{extra_diet5_price}
 	    </trim>
 	</insert>
 	
@@ -1080,4 +1076,42 @@
 		    AND type = 2
 		) AS t
 	</select>
+	
+	<insert id="AccountAnnualLeaveLedgerSave" parameterType="map">
+		INSERT INTO tb_account_annual_leave_ledger
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	        member_id,
+	        ledger_dt,
+	        type,
+	        days,
+	        reason,
+	    </trim>
+	    VALUES
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	        #{member_id},
+	        #{ledger_dt},
+	        #{type},
+	        #{days},
+	        #{reason},
+	    </trim>
+	</insert>
+	
+	<insert id="AccountOverTimeLedgerSave" parameterType="map">
+		INSERT INTO tb_account_overtime_ledger
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	        member_id,
+	        over_dt,
+	        type,
+	        times,
+	        reason,
+	    </trim>
+	    VALUES
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	        #{member_id},
+	        #{over_dt},
+	        #{type},
+	        #{times},
+	        #{reason},
+	    </trim>
+	</insert>
 </mapper>

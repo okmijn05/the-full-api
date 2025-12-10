@@ -7,7 +7,10 @@ import java.math.RoundingMode;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -185,6 +188,148 @@ public class AccountController {
         for (Map<String, Object> row : normalRecords) {	
         	iResult += accountService.AccountMemberRecordSave(row);
         	iResult += accountService.processProfitLossV2(row);
+        	
+        	if (row.get("type") != null) {
+        		
+        		Map<String, Object> annualMap = new HashMap<String, Object>();
+        		Map<String, Object> overMap = new HashMap<String, Object>();
+        		
+        		int iType = (int) row.get("type");
+        		
+        		// 1. 연, 월, 일로 LocalDate 객체 생성
+                LocalDate date = LocalDate.of((int)row.get("record_year"), (int)row.get("record_month"), (int)row.get("record_date"));
+
+                // 2. 원하는 형식(YYYY-MM-DD)의 포맷터 정의
+                // 'MM'과 'dd'는 각각 월과 일을 2자리 숫자로 표현하며, 필요시 0으로 채웁니다.
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM");
+                
+                String ledgerDt = date.format(formatter);			// 각 연차, 반차, 초과 등 부여 혹은 사용 날짜.
+                String ledgerMonth = date.format(formatter2);		// 대체근무 연차 부여 사용 기한.
+                String position = row.get("position").toString();	// 초과 일 때, 영양사만 지급.
+                
+                // 초과근무 시간 사용이 있는 지 체크.
+                if (iType == 1) {
+                	if (position.equals("영양사")) {
+                		// 시각 파싱
+                		DateTimeFormatter minutFormatter = DateTimeFormatter.ofPattern("H:m");
+                		
+                        LocalTime startTime = LocalTime.parse(row.get("start_time").toString(), minutFormatter);
+                        LocalTime endTime = LocalTime.parse(row.get("end_time").toString(), minutFormatter);
+                        LocalTime orgStartTime = LocalTime.parse(row.get("org_start_time").toString(), minutFormatter);
+                        LocalTime orgEndTime = LocalTime.parse(row.get("org_end_time").toString(), minutFormatter);
+                        
+                        Duration startDuration = Duration.between(startTime, orgStartTime);
+                        Duration endDuration = Duration.between(endTime, orgEndTime);
+                        
+                        long startMinutes = startDuration.toMinutes(); // 결과: 90 (분)
+                        long endMinutes = endDuration.toMinutes(); // 결과: 90 (분)
+                        
+                        double decimalHours = startMinutes / 60.0;
+                        double decimalHours2 = endMinutes / 60.0;
+                        
+                        if (decimalHours != 0 || decimalHours2 != 0) {
+                        	
+                        	if (decimalHours != 0) {
+                        		overMap.put("times", -decimalHours);
+                        	}
+                        	if (decimalHours2 != 0) {
+                        		overMap.put("times", -decimalHours2);
+                        	}
+                        	
+                        	overMap.put("member_id", row.get("member_id"));
+                        	overMap.put("type", "U");
+                        	overMap.put("over_dt", ledgerDt);
+                        	overMap.put("reason", "보상시간 사용");
+                        }
+                	}
+                }
+                
+                // 초과
+                if (iType == 3) {
+                	if (position.equals("영양사")) {
+                		
+                        // 초과근무시간 추출.
+                		double dOver = Double.parseDouble(row.get("note").toString());
+                		
+                		overMap.put("member_id", row.get("member_id"));
+                		overMap.put("times", dOver);
+                		overMap.put("type", "G");
+            			overMap.put("over_dt", ledgerDt);
+            			overMap.put("reason", "초과근무로 보상시간 부여");
+                	}
+        		}
+                // 대체근무
+                if (iType == 8) {
+        			annualMap.put("member_id", row.get("member_id"));
+        			annualMap.put("days", 1);
+        			annualMap.put("type", "G");
+        			annualMap.put("ledger_dt", ledgerDt);
+        			annualMap.put("reason", "대체근무로 인한 연차 부여 " + ledgerMonth);
+        		}
+        		// 연차
+        		if (iType == 9) {
+        			annualMap.put("member_id", row.get("member_id"));
+        			annualMap.put("days", -1);
+        			annualMap.put("type", "U");
+        			annualMap.put("ledger_dt", ledgerDt);
+        			annualMap.put("reason", "개인사정으로 인한 연차 사용");
+        		}
+        		// 반차
+        		if (iType == 10) {
+        			annualMap.put("member_id", row.get("member_id"));
+        			annualMap.put("days", -0.5);
+        			annualMap.put("type", "U");
+        			annualMap.put("ledger_dt", ledgerDt);
+        			annualMap.put("reason", "개인사정으로 인한 반차 사용");
+        		}
+        		// 대체휴무
+        		if (iType == 11) {
+        			annualMap.put("member_id", row.get("member_id"));
+        			annualMap.put("days", 0);
+        			annualMap.put("type", "U");
+        			annualMap.put("ledger_dt", ledgerDt);
+        			annualMap.put("reason", row.get("note").toString());
+        		}
+        		// 병가
+        		if (iType == 12) {
+        			annualMap.put("member_id", row.get("member_id"));
+        			annualMap.put("days", -1);
+        			annualMap.put("type", "U");
+        			annualMap.put("ledger_dt", ledgerDt);
+        			annualMap.put("reason", "개인사정으로 인한 반차 사용");
+        		}
+        		// 출산휴가
+        		if (iType == 13) {
+        			annualMap.put("member_id", row.get("member_id"));
+        			annualMap.put("days", 0);
+        			annualMap.put("type", "U");
+        			annualMap.put("ledger_dt", ledgerDt);
+        			annualMap.put("reason", "출산휴가");
+        		}
+        		// 육아휴직
+        		if (iType == 14) {
+        			annualMap.put("member_id", row.get("member_id"));
+        			annualMap.put("days", 0);
+        			annualMap.put("type", "U");
+        			annualMap.put("ledger_dt", ledgerDt);
+        			annualMap.put("reason", "육아휴직");
+        		}
+        		// 하계휴가
+        		if (iType == 15) {
+        			annualMap.put("member_id", row.get("member_id"));
+        			annualMap.put("days", 0);
+        			annualMap.put("type", "U");
+        			annualMap.put("ledger_dt", ledgerDt);
+        			annualMap.put("reason", "하계휴가");
+        		}
+        		if (!annualMap.isEmpty()) {
+        			iResult += accountService.AccountAnnualLeaveLedgerSave(annualMap);
+        		}
+        		if (!overMap.isEmpty()) {
+        			iResult += accountService.AccountOverTimeLedgerSave(overMap);
+        		}
+        	}
         }
         for (Map<String, Object> row : type5Records) {	
         	iResult += accountService.AccountDispatchRecordSave(row);
@@ -203,6 +348,13 @@ public class AccountController {
     	
     	return obj.toString();
     }
+    public static String formatNumbers(int year, int month, int day) {
+        // C 스타일의 형식 지정자를 사용합니다.
+        // %d: 10진수 정수
+        // %02d: 2자리로 표현하며, 2자리보다 작으면 앞에 0으로 채웁니다.
+        return String.format("%d-%02d-%02d", year, month, day);
+    }
+    
     /*
      * part		: 현장
      * method 	: AccountMemberRecordSave
@@ -300,49 +452,66 @@ public class AccountController {
      * comment 	: 거래처 -> 거래처 상세 저장
      */
     @SuppressWarnings("unchecked")
-	@PostMapping("Account/AccountInfoSave")
-    public String AccountInfoSave(@RequestBody Map<String, Object> payload) {
-    	
-    	int iResult = 0;
-    	
-    	//List<Map<String, Object>> payloadList = new ArrayList<>();
-    	
-    	Map<String, Object> formData = (Map<String, Object>) payload.get("formData");
-        Map<String, Object> payloadMap = new HashMap<String, Object>();
-        
-        payloadMap.putAll(formData);
-        
-        List<Map<String, Object>> priceData = (List<Map<String, Object>>) payload.get("priceData");
-        List<Map<String, Object>> etcData = (List<Map<String, Object>>) payload.get("etcData");
-        List<Map<String, Object>> managerData = (List<Map<String, Object>>) payload.get("managerData");
-        List<Map<String, Object>> eventData = (List<Map<String, Object>>) payload.get("eventData");
-        
-        for (Map<String, Object> row : etcData) {	
-        	payloadMap.putAll(row);
-        }
-        for (Map<String, Object> row : eventData) {	
-        	payloadMap.putAll(row);
-        }
-        for (Map<String, Object> row : managerData) {	
-        	payloadMap.putAll(row);
-        }
-        for (Map<String, Object> row : priceData) {	
-        	payloadMap.putAll(row);
-        }
-        
-        iResult = accountService.AccountInfoSave(payloadMap);
-        
+    @PostMapping("Account/AccountInfoSave")
+    public String AccountInfoSave(@RequestBody(required = false) Map<String, Object> payload) {
+
         JsonObject obj = new JsonObject();
-    	
-    	if(iResult > 0) {
-    		obj.addProperty("code", 200);
-    		obj.addProperty("message", "성공");
-    	} else {
-    		obj.addProperty("code", 400);
-    		obj.addProperty("message", "실패");
-    	}
-    	
-    	return obj.toString();
+
+        if (payload == null) {
+            obj.addProperty("code", 400);
+            obj.addProperty("message", "요청 데이터가 비어 있습니다.");
+            return obj.toString();
+        }
+
+        int iResult = 0;
+
+        Map<String, Object> formData = (Map<String, Object>) payload.get("formData");
+        Map<String, Object> payloadMap = new HashMap<>();
+
+        if (formData != null) {
+            payloadMap.putAll(formData);
+        }
+
+        List<Map<String, Object>> priceData   = (List<Map<String, Object>>) payload.get("priceData");
+        List<Map<String, Object>> etcData     = (List<Map<String, Object>>) payload.get("etcData");
+        List<Map<String, Object>> managerData = (List<Map<String, Object>>) payload.get("managerData");
+        List<Map<String, Object>> eventData   = (List<Map<String, Object>>) payload.get("eventData");
+
+        if (etcData != null) {
+            for (Map<String, Object> row : etcData) {
+                if (row != null) payloadMap.putAll(row);
+            }
+        }
+
+        if (eventData != null) {
+            for (Map<String, Object> row : eventData) {
+                if (row != null) payloadMap.putAll(row);
+            }
+        }
+
+        if (managerData != null) {
+            for (Map<String, Object> row : managerData) {
+                if (row != null) payloadMap.putAll(row);
+            }
+        }
+
+        if (priceData != null) {
+            for (Map<String, Object> row : priceData) {
+                if (row != null) payloadMap.putAll(row);
+            }
+        }
+
+        iResult = accountService.AccountInfoSave(payloadMap);
+
+        if (iResult > 0) {
+            obj.addProperty("code", 200);
+            obj.addProperty("message", "성공");
+        } else {
+            obj.addProperty("code", 400);
+            obj.addProperty("message", "실패");
+        }
+
+        return obj.toString();
     }
     /*
      * part		: 영업

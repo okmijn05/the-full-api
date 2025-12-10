@@ -41,4 +41,6 @@ public interface AccountMapper {
 	List<Map<String, Object>> AccountIssueList(Map<String, Object> paramMap); 						// 운영,회계 -> 거래처 이슈 조회
 	// 배치성 데이터
 	List<Map<String, Object>> BatchForPayBack(Map<String, Object> paramMap); 						// 본사 -> 관리표 -> 손익표 (판장금)
+	int AccountAnnualLeaveLedgerSave(Map<String, Object> paramMap);									// 출근부 -> 연차관리 저장
+	int AccountOverTimeLedgerSave(Map<String, Object> paramMap);									// 출근부 -> 초과관리 저장
 }

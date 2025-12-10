@@ -965,7 +965,21 @@
 	        extra_diet3_price,
 	        extra_diet4_price,
 	        extra_diet5_price,
-	        special_yn
+	        special_yn,
+	        ceremony2,
+	        daycare_breakfast,
+	        employ_breakfast,
+	        employ_lunch,
+	        employ_dinner,
+	        breakfast2,
+	        lunch2,
+	        dinner2,
+	        daycare_elderly_lunch,
+	        daycare_elderly_dinner,
+	        daycare_employ_breakfast,
+	        daycare_employ_lunch,
+	        daycare_employ_dinner,
+	        working_day
 	    </trim>
 	    
 	    VALUES
@@ -992,7 +1006,21 @@
 	        #{extra_diet3_price},
 	        #{extra_diet4_price},
 	        #{extra_diet5_price},
-	        #{special_yn}
+	        #{special_yn},
+	        #{ceremony2},
+	        #{daycare_breakfast},
+	        #{employ_breakfast},
+	        #{employ_lunch},
+	        #{employ_dinner},
+	        #{breakfast2},
+	        #{lunch2},
+	        #{dinner2},
+	        #{daycare_elderly_lunch},
+	        #{daycare_elderly_dinner},
+	        #{daycare_employ_breakfast},
+	        #{daycare_employ_lunch},
+	        #{daycare_employ_dinner},
+	        #{working_day}
 	    </trim>
 	    ON DUPLICATE KEY UPDATE
 	    <trim suffixOverrides=",">
@@ -1017,7 +1045,21 @@
 	        extra_diet3_price=#{extra_diet3_price},
 	        extra_diet4_price=#{extra_diet4_price},
 	        extra_diet5_price=#{extra_diet5_price},
-	        special_yn=#{special_yn}
+	        special_yn=#{special_yn},
+	        ceremony2=#{ceremony2},
+	        daycare_breakfast=#{daycare_breakfast},
+	        employ_breakfast=#{employ_breakfast},
+	        employ_lunch=#{employ_lunch},
+	        employ_dinner=#{employ_dinner},
+	        breakfast2=#{breakfast2},
+	        lunch2=#{lunch2},
+	        dinner2=#{dinner2},
+	        daycare_elderly_lunch=#{daycare_elderly_lunch},
+	        daycare_elderly_dinner=#{daycare_elderly_dinner},
+	        daycare_employ_breakfast=#{daycare_employ_breakfast},
+	        daycare_employ_lunch=#{daycare_employ_lunch},
+	        daycare_employ_dinner=#{daycare_employ_dinner},
+	        working_day=#{working_day}
 	    </trim>
 	</insert>
 	
@@ -1167,4 +1209,36 @@
 	        update_dt = DATE_FORMAT(NOW(), '%Y-%m-%d')
 	    </trim>
 	</insert>
+	
+	<select id="AnnualLeaveList" parameterType="map" resultType="map">
+		SELECT ledger_id,
+			   member_id,
+			   DATE_FORMAT(ledger_dt, '%Y-%m-%d') AS ledger_dt,
+			   type,
+			   days,
+			   reason
+		FROM tb_account_annual_leave_ledger
+		WHERE member_id = #{member_id}
+		ORDER BY ledger_dt DESC, 
+					CASE WHEN type = 'G' THEN 1
+						 WHEN type = 'U' THEN 2
+						 WHEN type = 'N' THEN 3
+						 ELSE 4 END
+	</select>
+	
+	<select id="OverTimeList" parameterType="map" resultType="map">
+		SELECT over_id,
+			   member_id,
+			   DATE_FORMAT(over_dt, '%Y-%m-%d') AS over_dt,
+			   type,
+			   times,
+			   reason
+		FROM tb_account_overtime_ledger
+		WHERE member_id = #{member_id}
+		ORDER BY over_dt DESC, 
+					CASE WHEN type = 'G' THEN 1
+						 WHEN type = 'U' THEN 2
+						 WHEN type = 'N' THEN 3
+						 ELSE 4 END
+	</select>
 </mapper>

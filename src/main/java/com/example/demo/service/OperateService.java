@@ -240,4 +240,16 @@ public class OperateService {
         
         return 1; // ✅ 전체 성공
     }
+	// 현장관리 -> 근태관리 -> 연차 정보 조회
+	public List<Map<String, Object>> AnnualLeaveList(Map<String, Object> paramMap) {
+		List<Map<String, Object>> resultList = new ArrayList<>();
+		resultList = operateMapper.AnnualLeaveList(paramMap);
+		return resultList;
+	}
+	// 현장관리 -> 근태관리 -> 초과근무 조회
+	public List<Map<String, Object>> OverTimeList(Map<String, Object> paramMap) {
+		List<Map<String, Object>> resultList = new ArrayList<>();
+		resultList = operateMapper.OverTimeList(paramMap);
+		return resultList;
+	}
 }

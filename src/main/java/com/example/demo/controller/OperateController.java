@@ -653,4 +653,29 @@ public class OperateController {
     	
     	return obj.toString();
 	}
+	/*
+     * part		: 운영
+     * method 	: MealsNumberList
+     * comment 	: 현장관리 -> 근태관리 -> 연차 정보 조회
+     */
+    @GetMapping("Operate/AnnualLeaveList")
+    public String AnnualLeaveList(@RequestParam Map<String, Object> paramMap) {
+    	List<Map<String, Object>> resultList = new ArrayList<>();
+    	resultList = operateService.AnnualLeaveList(paramMap);
+    	
+    	return new Gson().toJson(resultList);
+    }
+    /*
+     * part		: 운영
+     * method 	: MealsNumberList
+     * comment 	: 현장관리 -> 근태관리 -> 초과근무 조회
+     */
+    @GetMapping("Operate/OverTimeList")
+    public String OverTimeList(@RequestParam Map<String, Object> paramMap) {
+    	List<Map<String, Object>> resultList = new ArrayList<>();
+    	resultList = operateService.OverTimeList(paramMap);
+    	
+    	return new Gson().toJson(resultList);
+    }
+	
 }
