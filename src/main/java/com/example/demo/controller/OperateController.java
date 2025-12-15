@@ -677,5 +677,54 @@ public class OperateController {
     	
     	return new Gson().toJson(resultList);
     }
-	
+    /*
+     * part		: 운영
+     * method 	: OperateMemberList
+     * comment 	: 운영관리 -> 일정관리 -> 영업팀 조회
+     */
+    @GetMapping("Operate/OperateMemberList")
+    public String OperateMemberList(@RequestParam Map<String, Object> paramMap) {
+    	List<Map<String, Object>> resultList = new ArrayList<>();
+    	resultList = operateService.OperateMemberList();
+    	
+    	return new Gson().toJson(resultList);
+    }
+    
+    /*
+     * part		: 운영
+     * method 	: OperateScheduleList
+     * comment 	: 운영관리 -> 일정관리 -> 캘린더 조회
+     */
+    @GetMapping("Operate/OperateScheduleList")
+    public String OperateScheduleList(@RequestParam Map<String, Object> paramMap) {
+    	List<Map<String, Object>> resultList = new ArrayList<>();
+    	resultList = operateService.OperateScheduleList(paramMap);
+    	
+    	return new Gson().toJson(resultList);
+    }
+    
+    /* 
+	 * part		: 운영
+     * method 	: OperateScheduleSave
+     * comment 	: 운영관리 -> 일정관리 -> 캘린더 저장
+     */
+	@PostMapping("Operate/OperateScheduleSave")
+	public String OperateScheduleSave(@RequestBody Map<String, Object> paramMap) {
+		
+		int iResult = 0;
+		iResult = operateService.OperateScheduleSave(paramMap);
+		
+		JsonObject obj =new JsonObject();
+    	
+    	if(iResult > 0) {
+			obj.addProperty("code", 200);
+			obj.addProperty("message", "성공");
+    	} else {
+    		obj.addProperty("code", 400);
+			obj.addProperty("message", "실패");
+    	}
+    	
+    	return obj.toString();
+	}
+    
 }

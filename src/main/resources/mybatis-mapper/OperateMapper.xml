@@ -1241,4 +1241,76 @@
 						 WHEN type = 'N' THEN 3
 						 ELSE 4 END
 	</select>
+	
+	<select id="OperateMemberList" resultType="hashmap">
+		SELECT * FROM tb_user
+		WHERE department = 5
+		AND del_yn = 'N'
+		ORDER BY position ASC
+	</select>
+	
+	<select id="OperateScheduleList" parameterType="map" resultType="hashmap">
+    	SELECT oc.idx,
+    		   DATE_FORMAT(oc.start_date, '%Y-%m-%d') as start_date,
+    		   DATE_FORMAT(oc.end_date, '%Y-%m-%d') as end_date,
+    		   oc.content,
+    		   oc.type,
+    		   oc.del_yn,
+    		   oc.update_dt,
+    		   oc.reg_dt,
+    		   oc.user_id,
+    		   oc.reg_user_id,
+    		   u.user_name
+			FROM tb_operate_calendar oc
+			JOIN tb_user u
+			ON u.user_id = oc.user_id 
+			WHERE DATE_FORMAT(oc.start_date, '%Y-%m') = CONCAT(#{year},'-',#{month})
+			AND DATE_FORMAT(oc.end_date, '%Y-%m') = CONCAT(#{year},'-',#{month})
+    </select>
+	
+	<insert id="OperateScheduleSave">
+        INSERT INTO tb_operate_calendar
+    
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	        idx,
+	        start_date,
+	        end_date,
+	        content,
+	        type,
+	        update_dt,
+	        reg_dt,
+	        del_yn,
+	        user_id,
+	        reg_user_id
+	    </trim>
+	    
+	    VALUES
+	    
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	    	#{idx},
+	    	DATE_FORMAT(#{start_date}, '%Y-%m-%d'),
+	        DATE_FORMAT(#{end_date}, '%Y-%m-%d'),
+	        #{content},
+	        #{type},
+	        DATE_FORMAT(now(), '%Y-%m-%d'),
+	        DATE_FORMAT(#{reg_dt}, '%Y-%m-%d'),
+	        #{del_yn},
+	        #{user_id},
+	        #{reg_user_id}
+	    </trim>
+	    
+	    ON DUPLICATE KEY UPDATE
+	    <trim suffixOverrides=",">
+	    	idx=#{idx},
+	        start_date=DATE_FORMAT(#{start_date}, '%Y-%m-%d'),
+	        end_date=DATE_FORMAT(#{end_date}, '%Y-%m-%d'),
+	        content=#{content},
+	        type=#{type},
+	        update_dt=DATE_FORMAT(now(), '%Y-%m-%d'),
+	        reg_dt=DATE_FORMAT(#{reg_dt}, '%Y-%m-%d'),
+	        del_yn=#{del_yn},
+	        user_id=#{user_id},
+	        reg_user_id=#{reg_user_id}
+	    </trim>
+    </insert>
 </mapper>

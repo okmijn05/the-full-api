@@ -252,4 +252,22 @@ public class OperateService {
 		resultList = operateMapper.OverTimeList(paramMap);
 		return resultList;
 	}
+	// 운영 -> 일정관리 -> 운영팀 조회 
+	public List<Map<String, Object>> OperateMemberList() {
+		List<Map<String, Object>> resultList = new ArrayList<>();
+		resultList = operateMapper.OperateMemberList();
+		return resultList;
+	}
+	// 운영 -> 일정관리 -> 캘린더 조회
+	public List<Map<String, Object>> OperateScheduleList(Map<String, Object> paramMap) {
+		List<Map<String, Object>> resultList = new ArrayList<>();
+		resultList = operateMapper.OperateScheduleList(paramMap);
+		return resultList;
+	}
+	// 운영 -> 일정관리 -> 캘린더 저장
+	public int OperateScheduleSave (Map<String, Object> paramMap) {
+		int iResult = 0;
+		iResult = operateMapper.OperateScheduleSave(paramMap);
+		return iResult;
+	}
 }

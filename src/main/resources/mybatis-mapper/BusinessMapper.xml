@@ -366,7 +366,8 @@
 	</update>
 	
 	<select id="BusinessMemberList" resultType="hashmap">
-		SELECT * FROM tb_user
+		SELECT *
+		FROM tb_user
 		WHERE department = 4
 		AND del_yn = 'N'
 		ORDER BY position ASC
