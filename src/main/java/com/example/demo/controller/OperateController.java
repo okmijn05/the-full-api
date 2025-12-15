@@ -517,28 +517,36 @@ public class OperateController {
      */
     @PostMapping("Operate/AccountMembersSave")
     private String AccountMembersSave(@RequestBody Map<String, Object> paramMap) {
-    	
-    	List<Map<String, Object>> data = (List<Map<String, Object>>) paramMap.get("data");
-    	
-    	int iResult = 0;
-    	
-    	for (Map<String, Object> row : data) {
-    		String member_id = operateService.NowDateKey();
-    		row.put("member_id", member_id);
-    		iResult += operateService.AccountMembersSave(row);
+
+        List<Map<String, Object>> data = (List<Map<String, Object>>) paramMap.get("data");
+
+        int iResult = 0;
+
+        for (Map<String, Object> row : data) {
+
+            // ✅ member_id가 없을 때만 생성
+            Object memberIdObj = row.get("member_id");
+            String memberId = memberIdObj == null ? "" : String.valueOf(memberIdObj).trim();
+
+            if (memberId.isEmpty()) {
+                memberId = operateService.NowDateKey();
+                row.put("member_id", memberId);
+            }
+
+            iResult += operateService.AccountMembersSave(row);
         }
-    	
-    	JsonObject obj = new JsonObject();
-    	
-    	if(iResult > 0) {
-			obj.addProperty("code", 200);
-			obj.addProperty("message", "성공");
-    	} else {
-    		obj.addProperty("code", 400);
-			obj.addProperty("message", "실패");
-    	}
-    	
-    	return obj.toString();
+
+        JsonObject obj = new JsonObject();
+
+        if (iResult > 0) {
+            obj.addProperty("code", 200);
+            obj.addProperty("message", "성공");
+        } else {
+            obj.addProperty("code", 400);
+            obj.addProperty("message", "실패");
+        }
+
+        return obj.toString();
     }
     
     /*

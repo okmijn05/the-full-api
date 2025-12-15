@@ -32,6 +32,7 @@ public class WebConfig implements WebMvcConfigurer {
 		.addResourceLocations("file:///opt/apache-tomcat-10.1.49/webapps/api/WEB-INF/classes/static/image/");
 		//registry.addResourceHandler("/api/image/**")
 		//.addResourceLocations("file:///C:/Program Files/Apache Software Foundation/Tomcat 10.1/webapps/api/WEB-INF/classes/static/image/");
+		
 		//registry.addResourceHandler("/image/**")
 		//.addResourceLocations("file:///C:/Users/손경원/git/the-full-api/src/main/resources/static/image/");
 		
