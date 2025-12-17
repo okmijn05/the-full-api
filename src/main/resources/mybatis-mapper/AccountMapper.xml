@@ -4,6 +4,10 @@
 
 <mapper namespace="com.example.demo.mapper.AccountMapper">
 	
+	<select id="NowDateKey" resultType="String">
+		SELECT DATE_FORMAT(NOW(6), '%Y%m%d%H%i%s%f')
+	</select>
+	
 	<select id="AccountList" parameterType="int" resultType="hashmap">
 		SELECT account_id, 
 			   account_name, 
@@ -263,7 +267,8 @@
                  ELSE '' END AS total,
 		    --FORMAT((ifnull(subquery.max_salary,0) * ifnull(subquery.count_max,0)) + COALESCE((ifnull(subquery.min_salary,0) * ifnull(subquery.count_min,0)), 0),0) AS total,
 		    subquery.rrn,
-		    subquery.account_number
+		    subquery.account_number,
+		    subquery.del_yn
 		FROM (
 		    SELECT
 		        T.member_id,
@@ -280,13 +285,16 @@
 		        CASE WHEN MAX(T2.salary) != MIN(T2.salary)
 		             THEN SUM(CASE WHEN T2.salary = (SELECT MIN(salary) FROM tb_account_record_dispatch WHERE account_id = T.account_id AND member_id = T.member_id AND T2.record_year = #{year} AND T2.record_month = #{month}) THEN 1 ELSE 0 END)
 		             ELSE NULL
-		        END AS count_min
+		        END AS count_min,
+		        T.del_yn
 		    FROM tb_account_members_dispatch AS T
 		    LEFT JOIN tb_account_record_dispatch AS T2
 		    ON T.account_id = T2.account_id 
 		    AND T.member_id = T2.member_id
 		    WHERE T.account_id = #{account_id} 
-		    AND T.del_yn = 'N'
+		    <if test="del_yn != null">
+				AND T.del_yn = #{del_yn}
+			</if>
 		    GROUP BY T.member_id, T.account_id, T.name, T.rrn, T.account_number
 		) AS subquery
 		ORDER BY subquery.member_id
@@ -392,9 +400,15 @@
 	
 	<insert id="AccountDispatchMemberSave" parameterType="map">
 		INSERT INTO tb_account_members_dispatch
-		(account_id, member_id, name, rrn, account_number, note)
+		(account_id, member_id, name, rrn, account_number, note, del_yn)
 		VALUES
-		(#{account_id}, DATE_FORMAT(now(), '%Y%m%d%H%i%s'),#{name}, #{rrn}, #{account_number}, #{note})
+		(#{account_id}, #{member_id}, #{name}, #{rrn}, #{account_number}, #{note}, #{del_yn})
+		ON DUPLICATE KEY UPDATE
+		name = #{name},
+		rrn = #{rrn},
+		account_number = #{account_number},
+		note = #{note},
+		del_yn = #{del_yn}
 	</insert>
 	
 	<select id="AccountPropertiesList" parameterType="map" resultType="hashmap">

@@ -24,6 +24,11 @@ public class AccountService {
 		this.operateMapper = operateMapper;
 	}
 	
+	public String NowDateKey() {
+		String accountKey = accountMapper.NowDateKey();
+		return accountKey;
+	}
+	
 	public List<Map<String, Object>> AccountMemberList(int accountType) {
 		List<Map<String, Object>> resultList = new ArrayList<>();
 		resultList = accountMapper.AccountList(accountType);

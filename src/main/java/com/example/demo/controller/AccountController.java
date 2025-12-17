@@ -364,6 +364,19 @@ public class AccountController {
     	
     	int iResult = 0;
     	
+    	System.out.println("paramMap :: " + paramMap);
+    	System.out.println("account_id :: " + paramMap.get("account_id"));
+    	System.out.println("member_id :: " + paramMap.get("member_id"));
+    	
+    	// ✅ member_id가 없을 때만 생성
+        Object memberIdObj = paramMap.get("member_id");
+        String memberId = memberIdObj == null ? "" : String.valueOf(memberIdObj).trim();
+    	
+        if (memberId.isEmpty()) {
+            memberId = accountService.NowDateKey();
+            paramMap.put("member_id", memberId);
+        }
+    	
     	iResult = accountService.AccountDispatchMemberSave(paramMap);
     	
         JsonObject obj =new JsonObject();
