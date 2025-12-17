@@ -41,3 +41,4 @@ src/main/resources/application-secret.properties
 src/main/resources/application-secret-real.properties
 src/main/resources/application.properties_real
 src/main/resources/keys/
+src/main/resources/static/image/**
