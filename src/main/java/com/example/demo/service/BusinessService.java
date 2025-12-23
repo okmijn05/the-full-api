@@ -123,6 +123,12 @@ public class BusinessService {
 		return resultList;
 	}
 	// 고객사 관리 -> 조리복 재고 저장
+	public int CookWearSaveV2 (Map<String, Object> paramMap) {
+		int iResult = 0;
+		iResult = businessMapper.CookWearSaveV2(paramMap);
+		return iResult;
+	}
+	// 고객사 관리 -> 조리복 품목 저장
 	public int CookWearSave (Map<String, Object> paramMap) {
 		int iResult = 0;
 		iResult = businessMapper.CookWearSave(paramMap);

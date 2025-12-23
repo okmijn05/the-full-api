@@ -566,6 +566,27 @@ public class BusinessController {
     
     /* 
 	 * part		: 영업
+     * method 	: CookWearSaveV2
+     * comment 	: 고객사 관리 -> 조리복 품목 저장.
+     */
+    @PostMapping("Business/CookWearSaveV2")
+    private String CookWearSaveV2(@RequestBody Map<String, Object> paramMap) {
+    	
+    	JsonObject obj =new JsonObject();
+    	
+    	if(businessService.CookWearSaveV2(paramMap) > 0) {
+    		obj.addProperty("code", 200);
+    		obj.addProperty("message", "성공");
+    	} else {
+    		obj.addProperty("code", 400);
+    		obj.addProperty("message", "실패");
+    	}
+    	
+    	return obj.toString();
+    }
+    
+    /* 
+	 * part		: 영업
      * method 	: AccountEventList
      * comment 	: 고객사 관리 -> 고객사 행사관리 조회
      */

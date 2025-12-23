@@ -183,11 +183,7 @@
 	
 	<select id="CookWearList" parameterType="map" resultType="map">
 		SELECT type,
-			   CASE type WHEN 1 THEN 'M'
-						 WHEN 2 THEN 'L'
-		                 WHEN 3 THEN 'XL'
-		                 WHEN 4 THEN 'XXL'
-		                 ELSE '조리모' END AS item,
+			   type_name,
 			  ifnull(current_qty, 0) as current_qty,
 		      ifnull(new_qty, 0) as new_qty,
 		      ifnull(out_qty, 0) as out_qty,
@@ -197,43 +193,48 @@
 	</select>
 	
 	<select id="CookWearOutList" parameterType="map" resultType="map">
-		SELECT type,
-				CASE type WHEN 1 THEN 'M'
-						 WHEN 2 THEN 'L'
-		                 WHEN 3 THEN 'XL'
-		                 WHEN 4 THEN 'XXL'
-		                 ELSE '조리모' END AS item,
-			  account_id,
-			  DATE_FORMAT(out_dt, '%Y-%m-%d') as out_dt,
-		      ifnull(out_qty, 0) as out_qty,
+		SELECT acoh.type,
+			  acwi.type_name,
+			  acoh.account_id,
+			  DATE_FORMAT(acoh.out_dt, '%Y-%m-%d') as out_dt,
+		      ifnull(acoh.out_qty, 0) as out_qty,
 		      note
-		FROM tb_account_cook_wear_out_history
+		FROM tb_account_cook_wear_out_history acoh
+		JOIN tb_account_cook_wear_inventory acwi
+		ON acwi.type = acoh.type
+		ORDER BY acoh.type, acoh.out_dt
 	</select>
 	
 	<select id="CookWearNewList" parameterType="map" resultType="map">
-		SELECT type,
-				CASE type WHEN 1 THEN 'M'
-						 WHEN 2 THEN 'L'
-		                 WHEN 3 THEN 'XL'
-		                 WHEN 4 THEN 'XXL'
-		                 ELSE '조리모' END AS item,
-			  account_id,
-			  DATE_FORMAT(new_dt, '%Y-%m-%d') as new_dt,
-		      ifnull(new_qty, 0) as new_qty,
+		SELECT acwnh.type,
+			   acwi.type_name,
+			  acwnh.account_id,
+			  DATE_FORMAT(acwnh.new_dt, '%Y-%m-%d') as new_dt,
+		      ifnull(acwnh.new_qty, 0) as new_qty,
 		      note
-		FROM tb_account_cook_wear_new_history
+		FROM tb_account_cook_wear_new_history acwnh
+		JOIN tb_account_cook_wear_inventory acwi
+		ON acwi.type = acwnh.type
+		ORDER BY acwnh.type, acwnh.new_dt
 	</select>
 	
 	<!-- 현재고는 이전 재고로, 남은 재고는 현재고로 저장되어야 전에 몇개가 재고였는지 확인 할 수 있음 -->
 	<insert id="CookWearSave" parameterType="map">
-		INSERT INTO tb_account_cook_wear_inventory(type,before_qty,current_qty,remain_qty)
+		INSERT INTO tb_account_cook_wear_inventory(type,type_name,before_qty,current_qty,remain_qty)
 		VALUES
-		(#{type},#{orign_qty},#{remain_qty},#{remain_qty})
+		(#{type},#{type_name},#{orign_qty},#{remain_qty},#{remain_qty})
 		ON DUPLICATE KEY UPDATE
 		type = VALUES(type),
+		type_name = VALUES(type_name),
 		before_qty = #{orign_qty},
 		current_qty = VALUES(remain_qty),
 		remain_qty = VALUES(remain_qty)
+	</insert>
+	
+	<insert id="CookWearSaveV2" parameterType="map">
+		INSERT INTO tb_account_cook_wear_inventory(type,type_name,current_qty,remain_qty)
+		VALUES
+		(#{type},#{type_name},#{current_qty},#{current_qty})
 	</insert>
 	
 	<insert id="CookWearOutSave" parameterType="map">

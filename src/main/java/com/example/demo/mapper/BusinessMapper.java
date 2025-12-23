@@ -28,6 +28,7 @@ public interface BusinessMapper {
 	List<Map<String, Object>> CookWearOutList(Map<String, Object> paramMap);		// 고객사 관리 -> 조리복 분출내역 조회
 	List<Map<String, Object>> CookWearNewList(Map<String, Object> paramMap);		// 고객사 관리 -> 조리복 신규주문 내역 조회
 	int CookWearSave(Map<String, Object> paramMap);									// 고객사 관리 -> 조리복 재고내역 저장
+	int CookWearSaveV2(Map<String, Object> paramMap);								// 고객사 관리 -> 조리복 품목 저장
 	int CookWearOutSave(Map<String, Object> paramMap);								// 고객사 관리 -> 조리복 분출내역 저장
 	int CookWearNewSave(Map<String, Object> paramMap);								// 고객사 관리 -> 조리복 주문내역 저장
 	List<Map<String, Object>> AccountEventList(Map<String, Object> paramMap);		// 고객사 관리 -> 고객사 행사관리 조회

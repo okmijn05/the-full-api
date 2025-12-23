@@ -588,8 +588,8 @@
                t.doc_type_id,
                t.doc_type_name,
                t.doc_sub_name,
-               t.issue_dt,
-               t.expiry_dt,
+               DATE_FORMAT(t.issue_dt, '%Y-%m-%d') as issue_dt,
+		       DATE_FORMAT(t.expiry_dt, '%Y-%m-%d') as expiry_dt,
                t.file_path,
                t.note
 		FROM tb_account_members am
@@ -616,8 +616,8 @@
 	<select id="AccountTypeForFileList" parameterType="map" resultType="hashmap">
 		SELECT doc_id,
 			   file_path,
-			   issue_dt,
-			   expiry_dt,
+			   DATE_FORMAT(issue_dt, '%Y-%m-%d') as issue_dt,
+		       DATE_FORMAT(expiry_dt, '%Y-%m-%d') as expiry_dt,
 			   doc_type_id,
 			   note
 		FROM tb_account_members_files

@@ -823,6 +823,7 @@
 			   ifnull(adb.living_cost,0) as living_cost,
 		       ifnull(adb.basic_cost,0) as basic_cost,
 		       ifnull(adb.employ_cost,0) as employ_cost,
+		       ifnull(adb.integrity_cost,0) as integrity_cost,
 		       adb.input_exp,
 		       ifnull(abp.balance_price,0) as balance_price,
 		       ifnull(abp.balance_price,0) as before_price,
@@ -844,6 +845,8 @@
 			   		THEN '일반식대'
 			   		WHEN type = 3 
 			   		THEN '직원식대'
+			   		WHEN type = 5 
+			   		THEN '보전'
 			   		ELSE '미수잔액'
 			   		END AS type,
 			   DATE_FORMAT(input_dt, '%Y-%m-%d') as input_dt,
@@ -868,6 +871,7 @@
 	        living_cost,
 	        basic_cost,
 	        employ_cost,
+	        integrity_cost,
 	        input_exp,
 	        update_dt
 	    </trim>
@@ -882,6 +886,7 @@
 	        #{living_cost},
 	        #{basic_cost},
 	        #{employ_cost},
+	        #{integrity_cost},
 	        #{input_exp},
 	        DATE_FORMAT(now(), '%Y-%m-%d')
 	    </trim>
@@ -894,6 +899,7 @@
 	        living_cost=#{living_cost},
 	        basic_cost=#{basic_cost},
 	        employ_cost=#{employ_cost},
+	        integrity_cost=#{integrity_cost},
 	        input_exp=#{input_exp}
 	    </trim>
 	</insert>
