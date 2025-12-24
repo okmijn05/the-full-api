@@ -11,7 +11,7 @@ public class WebConfig implements WebMvcConfigurer {
 	final static String REAL_HANDLE = "/image/**";
 	final static String REAL_PATH = "file:///opt/thefull/uploads/image/";
 	
-	final static String DEV_HANDLE = "/api/image/**";
+	final static String DEV_HANDLE = "/image/**";
 	final static String DEV_PATH = "file:///C:/Users/user/Desktop/image/";
 	
 	final static String LOCAL_HANDLE = "/image/**";
