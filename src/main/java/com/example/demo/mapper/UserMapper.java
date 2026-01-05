@@ -11,6 +11,7 @@ public interface UserMapper {
 	Map<String, Object> Login(Map<String, Object> paramMap);
 	int UserRgt(Map<String, Object> paramMap);
 	int UserRgtDetail(Map<String, Object> paramMap);
+	List<Map<String, Object>> SelectUserInfo(Map<String, Object> paramMap);
 	List<Map<String, Object>> UserRecordSheetList(Map<String, Object> paramMap);
 	List<Map<String, Object>> UserMemberList(Map<String, Object> paramMap);
 	List<Map<String, Object>> ContractEndAccountList();

@@ -497,9 +497,9 @@ public class OperateController {
     }
     
     /*
-     * part		: 운영
+     * part		: 운영,인사
      * method 	: AccountMemberAllList
-     * comment 	: 급식사업부 -> 운영관리 -> 직원관리 조회
+     * comment 	: 급식사업부 -> 운영->현장관리, 인사->현장관리 -> 직원관리 조회
      */
     @GetMapping("Operate/AccountMemberAllList")
     public String AccountMemberAllList(@RequestParam Map<String, Object> paramMap) {
@@ -510,9 +510,9 @@ public class OperateController {
     }
     
     /*
-     * part		: 운영
+     * part		: 운영,인사
      * method 	: AccountSubRestaurantSave
-     * comment 	: 급식사업부 -> 운영관리 -> 직원관리 저장
+     * comment 	: 급식사업부 -> 운영->현장관리, 인사->현장관리 -> 직원관리 저장
      */
     @PostMapping("Operate/AccountMembersSave")
     private String AccountMembersSave(@RequestBody Map<String, Object> paramMap) {
@@ -533,6 +533,58 @@ public class OperateController {
             }
 
             iResult += operateService.AccountMembersSave(row);
+        }
+
+        JsonObject obj = new JsonObject();
+
+        if (iResult > 0) {
+            obj.addProperty("code", 200);
+            obj.addProperty("message", "성공");
+        } else {
+            obj.addProperty("code", 400);
+            obj.addProperty("message", "실패");
+        }
+
+        return obj.toString();
+    }
+    
+    /*
+     * part		: 운영,인사
+     * method 	: AccountDispatchMemberAllList
+     * comment 	: 급식사업부 -> 운영->현장관리, 인사->현장관리 -> 파출관리 조회
+     */
+    @GetMapping("Operate/AccountDispatchMemberAllList")
+    public String AccountDispatchMemberAllList(@RequestParam Map<String, Object> paramMap) {
+    	List<Map<String, Object>> resultList = new ArrayList<>();
+    	resultList = operateService.AccountDispatchMemberAllList(paramMap);
+    	
+    	return new Gson().toJson(resultList);
+    }
+    
+    /*
+     * part		: 운영,인사
+     * method 	: AccountSubRestaurantSave
+     * comment 	: 급식사업부 -> 운영->현장관리, 인사->현장관리 -> 파출관리 저장
+     */
+    @PostMapping("Operate/AccountDispatchMembersSave")
+    private String AccountDispatchMembersSave(@RequestBody Map<String, Object> paramMap) {
+
+        List<Map<String, Object>> data = (List<Map<String, Object>>) paramMap.get("data");
+
+        int iResult = 0;
+
+        for (Map<String, Object> row : data) {
+
+            // ✅ member_id가 없을 때만 생성
+            Object memberIdObj = row.get("member_id");
+            String memberId = memberIdObj == null ? "" : String.valueOf(memberIdObj).trim();
+
+            if (memberId.isEmpty()) {
+                memberId = operateService.NowDateKey();
+                row.put("member_id", memberId);
+            }
+
+            iResult += operateService.AccountDispatchMembersSave(row);
         }
 
         JsonObject obj = new JsonObject();

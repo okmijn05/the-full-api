@@ -1450,6 +1450,7 @@
 	<select id="AccountCorporateCardList" parameterType="string" resultType="hashmap">
 		SELECT idx, account_id, card_brand, card_no, DATE_FORMAT(reg_dt, '%Y-%m-%d') as reg_dt, user_id, del_yn 
 		FROM tb_account_corporate_card
+		WHERE account_id = #{account_id}
 	</select>
 	
 	<select id="AccountCorporateCardPaymentList" parameterType="string" resultType="hashmap">
@@ -1457,6 +1458,7 @@
 		FROM tb_account_corporate_card_payment_list
 		WHERE DATE_FORMAT(payment_dt, '%Y') = #{year}
 		AND DATE_FORMAT(payment_dt, '%m') = #{month}
+		AND account_id = #{account_id}
 	</select>
 	
 	<select id="AccountCorporateCardPaymentDetailList" parameterType="string" resultType="hashmap">
@@ -1590,4 +1592,12 @@
 	        itemType=#{itemType}
 	    </trim>
 	</insert>
+	
+	<select id="TallySheetCorporateCardPaymentSave" statementType="CALLABLE" parameterType="map">
+	    { CALL sp_sync_corp_card_to_tally_sheet_one_day(
+	        #{account_id, mode=IN, jdbcType=VARCHAR},
+	        #{payment_dt, mode=IN, jdbcType=VARCHAR},
+	        #{result, mode=OUT, jdbcType=INTEGER}
+	    ) }
+	</select>
 </mapper>

@@ -61,4 +61,5 @@ public interface AccountMapper {
 	int AccountCorporateCardSave(Map<String, Object> paramMap);											// 회계 -> 본사 법인카드 저장
 	int AccountCorporateCardPaymentSave(Map<String, Object> paramMap);									// 회계 -> 본사 법인카드 결제내역 저장
 	int AccountCorporateCardPaymentDetailLSave(Map<String, Object> paramMap);							// 회계 -> 본사 법인카드 상세내역 저장
+	void TallySheetCorporateCardPaymentSave(Map<String, Object> paramMap);								// 회계 -> 현장 법인카드 집계표 적용
 }

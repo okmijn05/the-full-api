@@ -175,17 +175,31 @@ public class OperateService {
 		resultList = operateMapper.AccountMemberSheetList(paramMap);
 		return resultList;
 	}
-	// 급식사업부 -> 운영관리 -> 직원관리 조회
+	// 급식사업부 -> 운영->현장관리, 인사->현장관리 -> 조회
 	public List<Map<String, Object>> AccountMemberAllList(Map<String, Object> paramMap) {
 		List<Map<String, Object>> resultList = new ArrayList<>();
 		resultList = operateMapper.AccountMemberAllList(paramMap);
 		return resultList;
 	}
 	
-	// 급식사업부 -> 운영관리 -> 직원관리 저장
+	// 급식사업부 -> 운영->현장관리, 인사->현장관리 -> 직원관리 저장
 	public int AccountMembersSave(Map<String, Object> paramMap) {
 		int iResult = 0;
 		iResult = operateMapper.AccountMembersSave(paramMap);
+		return iResult;
+	}
+	
+	// 급식사업부 -> 운영->현장관리, 인사->현장관리 -> 파출관리 조회
+	public List<Map<String, Object>> AccountDispatchMemberAllList(Map<String, Object> paramMap) {
+		List<Map<String, Object>> resultList = new ArrayList<>();
+		resultList = operateMapper.AccountDispatchMemberAllList(paramMap);
+		return resultList;
+	}
+	
+	// 급식사업부 -> 운영->현장관리, 인사->현장관리 -> 파출관리 저장
+	public int AccountDispatchMembersSave(Map<String, Object> paramMap) {
+		int iResult = 0;
+		iResult = operateMapper.AccountDispatchMembersSave(paramMap);
 		return iResult;
 	}
 	

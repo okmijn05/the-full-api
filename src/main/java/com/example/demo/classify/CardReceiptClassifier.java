@@ -8,6 +8,7 @@ public class CardReceiptClassifier {
     public static class Classified {
         public CardReceiptType type;
         public double confidence;
+
         public Classified(CardReceiptType type, double confidence) {
             this.type = type;
             this.confidence = confidence;
@@ -45,11 +46,27 @@ public class CardReceiptClassifier {
         if (text.contains("부가세") || upper.contains("VAT")) mart += 3;
         if (text.contains("과세물품") || text.contains("면세물품") || text.contains("과세합계") || text.contains("면세합계")) mart += 2;
 
-        // 5) 일반 카드전표(승인/가맹점/일시불/할부/단말기)
-        if (text.contains("승인번호") || text.contains("승인")) slip += 3;
+        // 5) 일반 카드전표(CARD_SLIP_GENERIC) 신호
+        // - 승인번호/승인일시/일시불/할부/가맹점번호/마스킹 카드번호 등
+        // - OCR에서 "승인번호"가 "승 인 번 호" 같은 형태로 깨질 수 있어서 regex로 판단
+        if (looksLikeApprovalNo(text) || containsApprovalKeyword(text)) slip += 5; // 가장 강한 신호
+        if (looksLikeApprovedDateTime(text)) slip += 2;
+
         if (text.contains("일시불") || text.contains("할부")) slip += 2;
-        if (text.contains("가맹점번호") || text.contains("단말기") || text.contains("TID")) slip += 2;
+
+        // 가맹점번호는 '가맹점NO'처럼도 많이 나옴
+        if (text.contains("가맹점번호") || text.contains("가맹점NO") || text.contains("가맹점 NO") || text.contains("가맹점NO.")) slip += 2;
+
+        // 단말기/TID/거래번호 등
+        if (text.contains("단말기") || text.contains("TID") || text.contains("거래번호")) slip += 1;
+
+        // 매입사/VAN
         if (text.contains("매입사") || upper.contains("VAN")) slip += 1;
+
+        // NO-CVM
+        if (upper.contains("NO-CVM") || upper.contains("NOCVM")) slip += 2;
+
+        // 카드번호 마스킹 형태
         if (looksLikeMaskedCardNo(text)) slip += 2;
 
         // 최종 선택
@@ -79,9 +96,26 @@ public class CardReceiptClassifier {
         return upper.contains("CU점") || upper.matches(".*\\bCU\\b.*(점|STORE).*");
     }
 
+    private boolean containsApprovalKeyword(String text) {
+        // '신용승인', '승인' 단독은 오탐 가능성이 있어서 '신용승인'만 강하게 인정
+        // (승인번호는 looksLikeApprovalNo에서 처리)
+        return text.contains("신용승인");
+    }
+
     private boolean looksLikeMaskedCardNo(String text) {
-        // 1234****5678 / 1234XXXXXXXX5678 / 1234-**-****-5678 등
-        return text.matches("(?s).*\\b\\d{4}[\\s\\-]*([*Xx]{2,}|\\d{0,2})[\\s\\-*Xx0-9]{2,12}\\d{4}\\b.*");
+        // 1234****5678 / 1234-**-****-5678 / 5585-0313-****-199* 등 허용
+        // - 마지막 3~4자리에 숫자뿐 아니라 * / X 도 섞일 수 있음
+        return text.matches("(?s).*\\b\\d{4}[\\s\\-]*([*Xx]{2,}|\\d{0,2})[\\s\\-*Xx0-9]{2,12}[\\d*Xx]{3,4}\\b.*");
+    }
+
+    private boolean looksLikeApprovalNo(String text) {
+        // 승인번호 / 승인 번호 / 승 인 번 호 등 OCR 깨짐까지 허용
+        return text.matches("(?s).*승\\s*인\\s*번\\s*호\\s*[:\\-]?\\s*\\d{6,12}.*");
+    }
+
+    private boolean looksLikeApprovedDateTime(String text) {
+        // 2025/12/18 12:58:36 형태 (슬래시/점/하이픈 모두 허용)
+        return text.matches("(?s).*\\b\\d{4}[./-]\\d{2}[./-]\\d{2}\\s+\\d{2}:\\d{2}:\\d{2}\\b.*");
     }
 
     private int max(int... arr) {

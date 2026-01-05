@@ -806,7 +806,7 @@
 	    VALUES (
 	        <choose>
 	            <when test="member_id == null or member_id == ''">
-	                DATE_FORMAT(NOW(), '%Y%m%d%H%i%s'),
+	                DATE_FORMAT(NOW(6), '%Y%m%d%H%i%s%f'),
 	            </when>
 	            <otherwise>#{member_id},</otherwise>
 	        </choose>
@@ -938,8 +938,113 @@
 	        update_dt = DATE_FORMAT(NOW(), '%Y-%m-%d'),
 	        user_id = #{user_id}
 	</insert>
-
 	
+	<select id="AccountDispatchMemberAllList" parameterType="map" resultType="map">
+		SELECT T.account_id,
+			   T.member_id,
+		       T.name,
+		       T2.record_year,
+		       T2.record_month,
+			   DATE_FORMAT(T.del_dt, '%Y-%m-%d') AS del_dt,
+			   T.del_yn,
+			   T.rrn,
+			   T.account_number,
+			   T.note,
+			   T.type,
+		       SUM(T2.cnt) AS cnt,
+			   SUM(T2.salary) AS salary
+		FROM tb_account_members_dispatch T
+		LEFT OUTER JOIN(
+			SELECT account_id,
+				   member_id,
+		           record_year,
+		           record_month,
+		           CASE WHEN record_date is not null
+						THEN COUNT(1)
+						ELSE 0
+						END AS cnt,
+		           salary
+		    FROM tb_account_record_dispatch
+		    GROUP BY account_id,
+					 member_id,
+		             record_year,
+		             record_month,
+		             record_date
+		) AS T2
+		ON T2.account_id = T.account_id
+		AND T2.member_id = T.member_id
+		WHERE 1=1
+		<if test='del_yn != null'>
+			AND T.del_yn = #{del_yn}
+ 		</if>
+		<if test='account_id !=null'>
+			AND T.account_id = #{account_id}
+ 		</if>
+ 		AND T2.record_year = #{year}
+ 		AND T2.record_month = #{month}
+		GROUP BY T.account_id,
+			     T.member_id,
+		         T2.record_year,
+		         T2.record_month
+		ORDER BY T.account_id
+	</select>
+	
+	<insert id="AccountDispatchMembersSave" parameterType="map">
+	    INSERT INTO tb_account_members_dispatch (
+	        member_id,
+	        account_id,
+	        name,
+	        del_dt,
+	        del_yn,
+	        rrn,
+	        account_number,
+	        note,
+	        type
+	    )
+	    VALUES (
+	        <choose>
+	            <when test="member_id == null or member_id == ''">
+	                DATE_FORMAT(NOW(6), '%Y%m%d%H%i%s%f'),
+	            </when>
+	            <otherwise>#{member_id},</otherwise>
+	        </choose>
+	
+	        #{account_id},
+	        #{name},
+	        <!-- del_dt -->
+	        <choose>
+	            <when test="del_dt != null and del_dt != ''">
+	                DATE_FORMAT(#{del_dt}, '%Y-%m-%d'),
+	            </when>
+	            <otherwise>null,</otherwise>
+	        </choose>
+	
+	        #{del_yn},
+	        #{rrn},
+	        #{account_number},
+	        #{note},
+	        #{type}
+	    )
+	
+	    ON DUPLICATE KEY UPDATE
+	        member_id = #{member_id},
+	        account_id = #{account_id},
+	        name = #{name},
+	
+	        del_dt = <choose>
+	            <when test="del_dt != null and del_dt != ''">
+	                DATE_FORMAT(#{del_dt}, '%Y-%m-%d')
+	            </when>
+	            <otherwise>null</otherwise>
+	        </choose>,
+	
+	        del_yn = #{del_yn},
+	        rrn = #{rrn},
+	        account_number = #{account_number},
+	        note = #{note},
+	        type = #{type}
+	</insert>
+
 	<select id="AccountDinnersNumberList" parameterType="map" resultType="hashmap">
 		SELECT *
 		FROM tb_account_diners_number

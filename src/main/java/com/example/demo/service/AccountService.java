@@ -412,4 +412,17 @@ public class AccountService {
 		iResult = accountMapper.AccountCorporateCardPaymentDetailLSave(paramMap);
 		return iResult;
 	}
+	// 회계 -> 현장 법인카드 집계표 적용
+	public int TallySheetCorporateCardPaymentSave(Map<String, Object> paramMap) {
+		int result = 0;
+		paramMap.put("result", 0); // OUT 값 초기화
+		accountMapper.TallySheetCorporateCardPaymentSave(paramMap);
+		// OUT 값 확인
+        result = (int) paramMap.get("result");
+        if (result != 1) {
+            throw new RuntimeException("❌ sp_sync_corp_card_to_tally_sheet_one_day 프로시저 실패");
+        }
+		
+		return result;
+	}
 }

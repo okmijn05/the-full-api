@@ -83,6 +83,17 @@ public class UserController {
     	return obj.toString();
 	}
 	
+	/*
+     * method 	: SelectUserInfo
+     * comment 	: 직원 정보 조회
+     */
+	@GetMapping("/User/SelectUserInfo")
+	public String SelectUserInfo(@RequestParam Map<String, Object> paramMap) {
+		List<Map<String, Object>> resultList = userService.SelectUserInfo(paramMap);
+		
+		return new Gson().toJson(resultList);
+	}
+	
 	 /*
      * method 	: UserRecordSheetList
      * comment 	: 신사업(일단,...)근태관리 조회

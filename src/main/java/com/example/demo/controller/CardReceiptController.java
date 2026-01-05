@@ -29,24 +29,23 @@ import com.example.demo.parser.BaseReceiptParser;
 import com.example.demo.parser.BaseReceiptParser.Item;
 import com.example.demo.service.AccountService;
 import com.example.demo.service.CardReceiptParseService;
-import com.example.demo.utils.BizNoUtils;
 import com.example.demo.utils.DateUtils;
 
 @RestController
-@RequestMapping("/card-receipt")
+@RequestMapping("/card-receipt/")
 public class CardReceiptController {
 
     @Autowired
     private CardReceiptParseService cardReceiptParseService;
-    
+
     @Autowired
     private AccountService accountService;
 
     private final String uploadDir;
-    
+
     @Autowired
     public CardReceiptController(@Value("${file.upload-dir}") String uploadDir) {
-    	this.uploadDir = uploadDir;
+        this.uploadDir = uploadDir;
     }
 
     @PostMapping("/parse")
@@ -56,14 +55,16 @@ public class CardReceiptController {
             @RequestParam(value = "objectValue", required = false) String objectValue,
             @RequestParam(value = "folderValue", required = false) String folderValue,
             @RequestParam(value = "cardNo", required = false) String cardNo,
-            @RequestParam(value = "cardBrand", required = false) String cardBrand
+            @RequestParam(value = "cardBrand", required = false) String cardBrand,
+            @RequestParam(value = "saveType", required = false) String saveType
     ) {
         try {
             if (file == null || file.isEmpty()) {
                 return ResponseEntity.badRequest().body("file is empty");
             }
+            if (folderValue == null || folderValue.isBlank()) folderValue = "card";
 
-            // ✅ 0) 먼저 파일 저장 (MultipartFile은 여기서 딱 한 번만 사용)
+            // ✅ 0) 파일 저장
             String saleIdForPath = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"));
 
             String staticPath = new File(uploadDir).getAbsolutePath();
@@ -72,18 +73,16 @@ public class CardReceiptController {
             Files.createDirectories(dirPath);
 
             String originalFileName = file.getOriginalFilename();
-            String uniqueFileName = UUID.randomUUID() + "_" + originalFileName;
+            String uniqueFileName = UUID.randomUUID() + "_" + (originalFileName == null ? "receipt" : originalFileName);
             Path savedPath = dirPath.resolve(uniqueFileName);
 
-            // ✅ transferTo 대신 stream copy 추천(더 안전)
             try (var in = file.getInputStream()) {
                 Files.copy(in, savedPath, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
             }
 
-            // 브라우저 접근용 경로
             String resultPath = "/image/" + folderValue + "/" + saleIdForPath + "/" + uniqueFileName;
 
-            // ✅ 1) 저장된 File로 OCR + 분류 + 파싱
+            // ✅ 1)  파싱 (type 있으면 강제, 없으면 자동)
             CardReceiptResponse res = cardReceiptParseService.parseFile(savedPath.toFile(), type);
             BaseReceiptParser.ReceiptResult result = res.result;
 
@@ -91,16 +90,25 @@ public class CardReceiptController {
                 return ResponseEntity.badRequest().body("❌ 영수증 날짜를 인식하지 못했습니다.");
             }
 
-            // ✅ 2) 이제 saleId는 “영수증 날짜 기반”으로 네 방식대로 다시 만들면 됨
+            // ✅ 2) saleId 생성(영수증 날짜 기반)
             LocalDate date = DateUtils.parseFlexibleDate(result.meta.saleDate);
             LocalDateTime dateTime = LocalDateTime.of(date, LocalTime.now());
             String saleId = dateTime.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"));
 
+            // ✅ 3) DB 저장 payload 만들기
             Map<String, Object> corporateCard = new HashMap<>();
-            corporateCard.put("account_id", objectValue);
+
+            boolean isAccount = "account".equalsIgnoreCase(saveType); // ✅ NPE 방지
+            if (isAccount) {
+                corporateCard.put("account_id", objectValue);
+            } else {
+                // 본사/부서 저장
+                int iDepartment = (objectValue == null || objectValue.isBlank()) ? 0 : Integer.parseInt(objectValue);
+                corporateCard.put("department", iDepartment);
+            }
+
             corporateCard.put("cardNo", cardNo);
             corporateCard.put("cardBrand", cardBrand);
-
             corporateCard.put("sale_id", saleId);
             corporateCard.put("use_name", result.merchant != null ? result.merchant.name : null);
             corporateCard.put("payment_dt", date);
@@ -108,7 +116,6 @@ public class CardReceiptController {
             corporateCard.put("discount", result.totals != null ? result.totals.discount : null);
             corporateCard.put("vat", result.totals != null ? result.totals.vat : null);
             corporateCard.put("taxFree", result.totals != null ? result.totals.taxFree : null);
-
             corporateCard.put("receipt_image", resultPath);
 
             // detailList
@@ -129,10 +136,22 @@ public class CardReceiptController {
 
             // DB 저장
             int iResult = 0;
-            iResult += accountService.AccountCorporateCardPaymentSave(corporateCard);
-            for (Map<String, Object> m : detailList) {
-                iResult += accountService.AccountCorporateCardPaymentDetailLSave(m);
+            if (isAccount) {
+                iResult += accountService.AccountCorporateCardPaymentSave(corporateCard);
+                iResult += accountService.TallySheetCorporateCardPaymentSave(corporateCard);
+                for (Map<String, Object> m : detailList) {
+                    iResult += accountService.AccountCorporateCardPaymentDetailLSave(m);
+                }
+            } else {
+                iResult += accountService.HeadOfficeCorporateCardPaymentSave(corporateCard);
+                for (Map<String, Object> m : detailList) {
+                    iResult += accountService.HeadOfficeCorporateCardPaymentDetailLSave(m);
+                }
             }
+
+            // 필요하면 res.type/confidence도 같이 반환 가능
+            //corporateCard.put("parsed_type", res.type.name());
+            //corporateCard.put("parsed_confidence", res.confidence);
 
             return ResponseEntity.ok(corporateCard);
 
@@ -141,89 +160,45 @@ public class CardReceiptController {
             return ResponseEntity.internalServerError().body("parse failed: " + e.getMessage());
         }
     }
-    
-    // ✅ 식재료 키워드
-    private static final List<String> FOOD_KEYWORDS = Arrays.asList(
-        "쌀", "현미", "찹쌀", "보리",
-        "감자", "고구마", "양파", "당근", "마늘", "생강", "무", "배추", "파", "버섯", "양배추",
-        "고기", "쇠고기", "소고기", "돼지고기", "돈육", "닭", "계육", "정육", "삼겹살",
-        "계란", "달걀", "두부", "콩", "콩나물", "숙주",
-        "생선", "연어", "참치", "고등어", "오징어", "새우", "조개", "해물",
-        "김치", "고춧가루", "된장", "간장", "맛술", "참기름", "식초", "소금", "설탕",
-        "밀가루", "전분", "치즈", "버터", "우유", "생크림", "요거트",
-        "사과", "바나나", "딸기", "배", "포도", "과일"
-    );
 
-    // ✅ 소모품 키워드
-    private static final List<String> SUPPLY_KEYWORDS = Arrays.asList(
-        "칼", "식칼", "도마", "가위", "국자", "집게",
-        "행주", "수건", "걸레", "키친타올", "종이타월", "휴지", "물티슈",
-        "위생장갑", "고무장갑", "앞치마", "마스크",
-        "종이컵", "비닐", "봉투", "랩", "호일", "포장",
-        "세제", "주방세제", "락스", "세척제", "소독제",
-        "수세미", "스펀지", "필터", "호스"
-    );
-
-    // ✅ 예외 케이스 (예: "칼국수" → 음식)
-    private static final List<String> FOOD_EXCEPTIONS = Arrays.asList(
-        "칼국수", "가위살" // '칼','가위' 포함하지만 실제 식재료인 경우
-    );
-    
-    // ✅ 과면세 케이스
+    // ---------------- 너 기존 classify/taxify 그대로 붙여넣기 ----------------
     private static final String VAT = "과세";
     private static final String TAX_FREE = "면세";
-    
-    /**
-     * ✅ TaxType 으로 결과 반환
-     * @return 
-     */
+
     public static int taxify(String taxFlag) {
-        if (taxFlag == null || taxFlag.isEmpty()) {
-            return 3;
-        }
-
-        if (taxFlag.equals(VAT)) {
-            return 1;
-        }
-
-        if (taxFlag.equals(TAX_FREE)) {
-            return 2;
-        }
-
+        if (taxFlag == null || taxFlag.isEmpty()) return 3;
+        if (taxFlag.equals(VAT)) return 1;
+        if (taxFlag.equals(TAX_FREE)) return 2;
         return 3;
     }
-    
-    /**
-     * ✅ 품목명으로부터 분류 결과 반환
-     * @return 
-     */
+
+    // 아래 키워드/예외 리스트는 네 기존 코드 그대로 복붙하면 됨
+    private static final List<String> FOOD_KEYWORDS = Arrays.asList("쌀","현미","찹쌀","보리","감자","고구마","양파","당근","마늘","생강","무","배추","파","버섯","양배추",
+            "고기","쇠고기","소고기","돼지고기","돈육","닭","계육","정육","삼겹살","계란","달걀","두부","콩","콩나물","숙주",
+            "생선","연어","참치","고등어","오징어","새우","조개","해물","김치","고춧가루","된장","간장","맛술","참기름","식초","소금","설탕",
+            "밀가루","전분","치즈","버터","우유","생크림","요거트","사과","바나나","딸기","배","포도","과일");
+
+    private static final List<String> SUPPLY_KEYWORDS = Arrays.asList("칼","식칼","도마","가위","국자","집게",
+            "행주","수건","걸레","키친타올","종이타월","휴지","물티슈",
+            "위생장갑","고무장갑","앞치마","마스크",
+            "종이컵","비닐","봉투","랩","호일","포장",
+            "세제","주방세제","락스","세척제","소독제",
+            "수세미","스펀지","필터","호스");
+
+    private static final List<String> FOOD_EXCEPTIONS = Arrays.asList("칼국수", "가위살");
+
     public static int classify(String itemName) {
-        if (itemName == null || itemName.isEmpty()) {
-            return 3;
-        }
+        if (itemName == null || itemName.isEmpty()) return 3;
 
-        // 1) 예외 케이스부터 검사
         for (String ex : FOOD_EXCEPTIONS) {
-            if (itemName.contains(ex)) {
-                return 3;
-            }
+            if (itemName.contains(ex)) return 3; // ✅ 네 기존 로직 유지
         }
-
-        // 2) 식재료 키워드 포함 시
         for (String keyword : FOOD_KEYWORDS) {
-            if (itemName.contains(keyword)) {
-                return 1;
-            }
+            if (itemName.contains(keyword)) return 1;
         }
-
-        // 3) 소모품 키워드 포함 시
         for (String keyword : SUPPLY_KEYWORDS) {
-            if (itemName.contains(keyword)) {
-                return 2;
-            }
+            if (itemName.contains(keyword)) return 2;
         }
-
-        // 4) 해당 없으면 기타
         return 3;
     }
 }

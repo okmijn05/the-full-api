@@ -6,5 +6,6 @@ public enum CardReceiptType {
     CONVENIENCE,
     MART_ITEMIZED,
     CARD_SLIP_GENERIC,
+    DELIVERY,
     UNKNOWN
 }

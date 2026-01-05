@@ -8,41 +8,43 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface OperateMapper {
 	
-	List<Map<String, Object>> TallySheetList(Map<String, Object> paramMap);				// 급식사업부 -> 운영관리 -> 집계표 조회
+	List<Map<String, Object>> TallySheetList(Map<String, Object> paramMap);						// 급식사업부 -> 운영관리 -> 집계표 조회
 	
 	String NowDateKey();
 	
-	int TallyNowMonthSave(Map<String, Object> paramMap);								// 급식사업부 -> 운영관리 -> 본월 집계표 저장
-	int TallyBeforeMonthSave(Map<String, Object> paramMap);								// 급식사업부 -> 운영관리 -> 이월 집계표 저장
-	int PropertiesSave(Map<String, Object> paramMap);									// 급식사업부 -> 운영관리 -> 기물리스트 저장
-	List<Map<String, Object>> PropertiesList(Map<String, Object> paramMap);				// 급식사업부 -> 운영관리 -> 기물리스트 조회
-	List<Map<String, Object>> HygieneList(Map<String, Object> paramMap);				// 급식사업부 -> 운영관리 -> 위생관리 조회
-	int HygieneSave(Map<String, Object> paramMap);										// 급식사업부 -> 운영관리 -> 위생관리 저장
-	Map<String, Object> HandOverSearch(Map<String, Object> paramMap);					// 급식사업부 -> 운영관리 -> 인수인계서 조회
-	int HandOverSave(Map<String, Object> paramMap);										// 급식사업부 -> 운영관리 -> 인수인계서 저장
-	List<Map<String, Object>> AccountMappingList(Map<String, Object> paramMap);			// 급식사업부 -> 운영관리 -> 집계표 Modal 거래처 매핑 조회
-	List<Map<String, Object>> AccountMappingV2List(Map<String, Object> paramMap);		// 급식사업부 -> 운영관리 -> 집계표 Modal 거래처 매핑 조회 V2
-	int AccountMappingSave(Map<String, Object> paramMap);								// 급식사업부 -> 운영관리 -> 집계표 Modal 거래처 매핑 저장
-	int AccountRetailBusinessSave(Map<String, Object> paramMap);						// 급식사업부 -> 운영관리 -> 집계표 Modal 거래처 저장
-	List<Map<String, Object>> AccountRetailBusinessList(Map<String, Object> paramMap);	// 급식사업부 -> 운영관리 -> 고객사관리 -> 거래처관리 조회
-	List<Map<String, Object>> AccountMembersFilesList(Map<String, Object> paramMap);	// 급식사업부 -> 운영관리 -> 고객사관리 -> 면허증 및 자격증관리 조회
-	List<Map<String, Object>> AccountTypeForFileList(Map<String, Object> paramMap);		// 급식사업부 -> 운영관리 -> 고객사관리 -> 면허증 및 자격증관리 타입별 조회
-	int AccountMembersFilesSave(Map<String, Object> paramMap);							// 급식사업부 -> 운영관리 -> 고객사관리 -> 면허증 및 자격증관리 저장
-	List<Map<String, Object>> AccountSubRestaurantList(Map<String, Object> paramMap);	// 급식사업부 -> 운영관리 -> 고객사관리 -> 대체업체 조회
-	int AccountSubRestaurantSave(Map<String, Object> paramMap);							// 급식사업부 -> 운영관리 -> 고객사관리 -> 대체업체 저장
-	List<Map<String, Object>> AccountMemberSheetList(Map<String, Object> paramMap); 	// 급식사업부 -> 운영관리 -> 고객사관리 -> 인사기록카드 조회
-	List<Map<String, Object>> AccountMemberAllList(Map<String, Object> paramMap); 		// 급식사업부 -> 운영관리 -> 직원관리 조회
-	int AccountMembersSave(Map<String, Object> paramMap);								// 급식사업부 -> 운영관리 -> 직원관리 저장
-	List<Map<String, Object>> AccountDinnersNumberList(Map<String, Object> paramMap); 	// 급식사업부 -> 운영관리 -> 거래처관리 -> 식수현황
-	int AccountDinnersNumberSave(Map<String, Object> paramMap);							// 급식사업부 -> 운영관리 -> 거래처관리 -> 식수현황 저장
-	void BudgetTotalSave(Map<String, Object> paramMap);									// 예산 계산 프로시저
-	List<Map<String, Object>> BudgetManageMentList(Map<String, Object> paramMap); 		// 급식사업부 -> 운영관리 -> 예산관리 조회
-	int BudgetTableSave(Map<String, Object> paramMap);									// 급식사업부 -> 운영관리 -> 예산관리 저장
-	List<Map<String, Object>> BudgetStandardList(Map<String, Object> paramMap); 		// 급식사업부 -> 운영관리 -> 예산관리(예산기준) 조회
-	List<Map<String, Object>> MealsNumberList(Map<String, Object> paramMap); 			// 급식사업부 -> 운영관리 -> 예산관리(배식횟수) 조회
-	List<Map<String, Object>> AnnualLeaveList(Map<String, Object> paramMap); 			// 급식사업부 -> 운영관리 -> 현장관리 -> 근태관리 -> 연차 정보 조회
-	List<Map<String, Object>> OverTimeList(Map<String, Object> paramMap); 				// 급식사업부 -> 운영관리 -> 현장관리 -> 근태관리 -> 초과근무 조회
-	List<Map<String, Object>> OperateMemberList();										// 운영관리 -> 일정관리 -> 운영팀 조회
-	int OperateScheduleSave(Map<String, Object> paramMap);								// 운영관리 -> 일정관리 저장
-	List<Map<String, Object>> OperateScheduleList(Map<String, Object> paramMap);		// 운영관리 -> 일정관리 조회
+	int TallyNowMonthSave(Map<String, Object> paramMap);										// 급식사업부 -> 운영관리 -> 본월 집계표 저장
+	int TallyBeforeMonthSave(Map<String, Object> paramMap);										// 급식사업부 -> 운영관리 -> 이월 집계표 저장
+	int PropertiesSave(Map<String, Object> paramMap);											// 급식사업부 -> 운영관리 -> 기물리스트 저장
+	List<Map<String, Object>> PropertiesList(Map<String, Object> paramMap);						// 급식사업부 -> 운영관리 -> 기물리스트 조회
+	List<Map<String, Object>> HygieneList(Map<String, Object> paramMap);						// 급식사업부 -> 운영관리 -> 위생관리 조회
+	int HygieneSave(Map<String, Object> paramMap);												// 급식사업부 -> 운영관리 -> 위생관리 저장
+	Map<String, Object> HandOverSearch(Map<String, Object> paramMap);							// 급식사업부 -> 운영관리 -> 인수인계서 조회
+	int HandOverSave(Map<String, Object> paramMap);												// 급식사업부 -> 운영관리 -> 인수인계서 저장
+	List<Map<String, Object>> AccountMappingList(Map<String, Object> paramMap);					// 급식사업부 -> 운영관리 -> 집계표 Modal 거래처 매핑 조회
+	List<Map<String, Object>> AccountMappingV2List(Map<String, Object> paramMap);				// 급식사업부 -> 운영관리 -> 집계표 Modal 거래처 매핑 조회 V2
+	int AccountMappingSave(Map<String, Object> paramMap);										// 급식사업부 -> 운영관리 -> 집계표 Modal 거래처 매핑 저장
+	int AccountRetailBusinessSave(Map<String, Object> paramMap);								// 급식사업부 -> 운영관리 -> 집계표 Modal 거래처 저장
+	List<Map<String, Object>> AccountRetailBusinessList(Map<String, Object> paramMap);			// 급식사업부 -> 운영관리 -> 고객사관리 -> 거래처관리 조회
+	List<Map<String, Object>> AccountMembersFilesList(Map<String, Object> paramMap);			// 급식사업부 -> 운영관리 -> 고객사관리 -> 면허증 및 자격증관리 조회
+	List<Map<String, Object>> AccountTypeForFileList(Map<String, Object> paramMap);				// 급식사업부 -> 운영관리 -> 고객사관리 -> 면허증 및 자격증관리 타입별 조회
+	int AccountMembersFilesSave(Map<String, Object> paramMap);									// 급식사업부 -> 운영관리 -> 고객사관리 -> 면허증 및 자격증관리 저장
+	List<Map<String, Object>> AccountSubRestaurantList(Map<String, Object> paramMap);			// 급식사업부 -> 운영관리 -> 고객사관리 -> 대체업체 조회
+	int AccountSubRestaurantSave(Map<String, Object> paramMap);									// 급식사업부 -> 운영관리 -> 고객사관리 -> 대체업체 저장
+	List<Map<String, Object>> AccountMemberSheetList(Map<String, Object> paramMap); 			// 급식사업부 -> 운영관리 -> 고객사관리 -> 인사기록카드 조회
+	List<Map<String, Object>> AccountMemberAllList(Map<String, Object> paramMap); 				// 급식사업부 -> 운영->현장관리, 인사->현장관리 -> 직원관리 조회
+	int AccountMembersSave(Map<String, Object> paramMap);										// 급식사업부 -> 운영->현장관리, 인사->현장관리 -> 직원관리 저장
+	List<Map<String, Object>> AccountDispatchMemberAllList(Map<String, Object> paramMap); 		// 급식사업부 -> 운영->현장관리, 인사->현장관리 -> 파출관리 조회
+	int AccountDispatchMembersSave(Map<String, Object> paramMap);								// 급식사업부 -> 운영->현장관리, 인사->현장관리 -> 파출관리 저장
+	List<Map<String, Object>> AccountDinnersNumberList(Map<String, Object> paramMap); 			// 급식사업부 -> 운영관리 -> 거래처관리 -> 식수현황
+	int AccountDinnersNumberSave(Map<String, Object> paramMap);									// 급식사업부 -> 운영관리 -> 거래처관리 -> 식수현황 저장
+	void BudgetTotalSave(Map<String, Object> paramMap);											// 예산 계산 프로시저
+	List<Map<String, Object>> BudgetManageMentList(Map<String, Object> paramMap); 				// 급식사업부 -> 운영관리 -> 예산관리 조회
+	int BudgetTableSave(Map<String, Object> paramMap);											// 급식사업부 -> 운영관리 -> 예산관리 저장
+	List<Map<String, Object>> BudgetStandardList(Map<String, Object> paramMap); 				// 급식사업부 -> 운영관리 -> 예산관리(예산기준) 조회
+	List<Map<String, Object>> MealsNumberList(Map<String, Object> paramMap); 					// 급식사업부 -> 운영관리 -> 예산관리(배식횟수) 조회
+	List<Map<String, Object>> AnnualLeaveList(Map<String, Object> paramMap); 					// 급식사업부 -> 운영관리 -> 현장관리 -> 근태관리 -> 연차 정보 조회
+	List<Map<String, Object>> OverTimeList(Map<String, Object> paramMap); 						// 급식사업부 -> 운영관리 -> 현장관리 -> 근태관리 -> 초과근무 조회
+	List<Map<String, Object>> OperateMemberList();												// 운영관리 -> 일정관리 -> 운영팀 조회
+	int OperateScheduleSave(Map<String, Object> paramMap);										// 운영관리 -> 일정관리 저장
+	List<Map<String, Object>> OperateScheduleList(Map<String, Object> paramMap);				// 운영관리 -> 일정관리 조회
 }

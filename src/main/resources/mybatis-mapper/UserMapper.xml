@@ -13,6 +13,18 @@
         (user_id, user_name, password, user_type, reg_dt, join_dt, account_id, position, department)
         VALUES
         (#{user_id}, #{user_name}, #{password}, #{user_type}, DATE_FORMAT(NOW(), '%Y-%m-%d'), DATE_FORMAT(#{join_dt}, '%Y-%m-%d'), #{account_id}, #{position}, #{department})
+    	ON DUPLICATE KEY UPDATE
+	    <trim suffixOverrides=",">
+	        user_id=#{user_id},
+	        user_name=#{user_name},
+	        password=#{password},
+	        user_type=#{user_type},
+	        reg_dt=DATE_FORMAT(NOW(), '%Y-%m-%d'),
+	        join_dt=DATE_FORMAT(#{join_dt}, '%Y-%m-%d'),
+	        account_id=#{account_id},
+	        position=#{position},
+	        department=#{department}
+	    </trim>
     </insert>
     
     <insert id="UserRgtDetail" parameterType="map">
@@ -20,7 +32,31 @@
         (user_id, address, address_detail, zipcode, birth_date, phone)
         VALUES
         (#{user_id}, #{address}, #{address_detail}, #{zipcode}, DATE_FORMAT(#{birth_date}, '%Y-%m-%d'), #{phone})
+    	ON DUPLICATE KEY UPDATE
+    	<trim suffixOverrides=",">
+	        user_id=#{user_id},
+	        address=#{address},
+	        address_detail=#{address_detail},
+	        zipcode=#{zipcode},
+	        birth_date=DATE_FORMAT(#{birth_date}, '%Y-%m-%d'),
+	       	phone=#{phone}
+	    </trim>
     </insert>
+    
+    <select id="SelectUserInfo" parameterType="map" resultType="hashmap">
+    	SELECT T.user_id, T.user_name, T.password, T.user_type, 
+    		   DATE_FORMAT(T.reg_dt, '%Y-%m-%d') AS reg_dt, 
+    		   DATE_FORMAT(T.join_dt, '%Y-%m-%d') AS join_dt, 
+    		   DATE_FORMAT(T.del_dt, '%Y-%m-%d') AS del_dt, 
+    		   T.del_yn, T.account_id, T.position, T.department, 
+    		   T2.address, T2.address_detail, T2.zipcode, T2.phone, 
+    		   DATE_FORMAT(T2.birth_date, '%Y-%m-%d') AS birth_date
+			FROM tb_user T
+			JOIN tb_userdetail T2
+			ON T.user_id = T2.user_id
+			WHERE T.user_id = #{user_id}
+			AND T.del_yn = 'N'
+    </select>
     
     <select id="UserRecordSheetList" parameterType="map" resultType="hashmap">
     	SELECT T.user_id, T.user_name, T2.year, T2.month, T2.record_date, T2.start_time, T2.end_time, ifnull(T2.leave_use,"") as leave_use, ifnull(T2.leave_type,"") as leave_type

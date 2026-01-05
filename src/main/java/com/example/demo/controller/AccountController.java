@@ -1134,6 +1134,8 @@ public class AccountController {
     	if (mainList != null) {
     		for (Map<String, Object> mainMap : mainList) {
         		iResult += accountService.AccountCorporateCardPaymentSave(mainMap);
+        		// 집계표도 다시 적용.
+        		iResult += accountService.TallySheetCorporateCardPaymentSave(mainMap);
             }
     	}
     	if (itemList != null) {

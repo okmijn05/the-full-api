@@ -27,6 +27,10 @@ public class UserService {
 	public int UserRgtDetail(Map<String, Object> paramMap) {
 		return userMapper.UserRgtDetail(paramMap);
 	};
+	// 직원 정보 조회
+	public List<Map<String, Object>> SelectUserInfo(Map<String, Object> paramMap) {
+		return userMapper.SelectUserInfo(paramMap);
+	}
 	// 신사업팀(우선...) 근태관리 조회
 	public List<Map<String, Object>> UserRecordSheetList(Map<String, Object> paramMap) {
 		return userMapper.UserRecordSheetList(paramMap);
