@@ -54,11 +54,23 @@ public class HeadOfficeController {
 	/* 
 	 * part		: 본사
      * method 	: WeekMenuList
-     * comment 	: 본사 -> 캘린더 조회
+     * comment 	: 본사 -> 식단표 캘린더 조회
      */
 	@GetMapping("HeadOffice/WeekMenuList")
 	public String WeekMenuList(@RequestParam Map<String, Object> paramMap) {
 		List<Map<String, Object>> resultList = headOfficeService.WeekMenuList(paramMap);
+		
+		return new Gson().toJson(resultList);
+	}
+	
+	/* 
+	 * part		: 본사
+     * method 	: WeekMenuTodayList
+     * comment 	: 본사 -> 식단표 당일 조회
+     */
+	@GetMapping("HeadOffice/WeekMenuTodayList")
+	public String WeekMenuTodayList(@RequestParam Map<String, Object> paramMap) {
+		List<Map<String, Object>> resultList = headOfficeService.WeekMenuTodayList(paramMap);
 		
 		return new Gson().toJson(resultList);
 	}

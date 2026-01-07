@@ -1380,6 +1380,29 @@
 			WHERE DATE_FORMAT(oc.start_date, '%Y-%m') = CONCAT(#{year},'-',#{month})
 			AND DATE_FORMAT(oc.end_date, '%Y-%m') = CONCAT(#{year},'-',#{month})
     </select>
+    
+    <select id="OperateScheduleTodayList" parameterType="map" resultType="hashmap">
+    	SELECT oc.idx,
+    		   DATE_FORMAT(oc.start_date, '%Y-%m-%d') as start_date,
+    		   DATE_FORMAT(oc.end_date, '%Y-%m-%d') as end_date,
+    		   oc.content,
+    		   oc.type,
+    		   oc.del_yn,
+    		   oc.update_dt,
+    		   oc.reg_dt,
+    		   oc.user_id,
+    		   oc.reg_user_id,
+    		   u.user_name,
+    		   CASE WHEN u.user_id = 'ceo' THEN '대표'
+			        WHEN u.user_id IN ('britzsky', 'hh2', 'mh2', 'bh4', 'yh2') THEN '팀장'
+			        WHEN u.user_id IN ('sy7', 'jr1') THEN '파트장'
+			        ELSE '매니저'
+			    END AS position_name
+			FROM tb_operate_calendar oc
+			JOIN tb_user u
+			ON u.user_id = oc.user_id 
+			WHERE DATE_FORMAT(oc.start_date, '%Y-%m-%d') = #{today}
+    </select>
 	
 	<insert id="OperateScheduleSave">
         INSERT INTO tb_operate_calendar

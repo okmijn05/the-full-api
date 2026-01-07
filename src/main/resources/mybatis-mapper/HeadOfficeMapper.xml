@@ -59,6 +59,21 @@
 			AND del_yn = 'N'
     </select>
     
+    <select id="WeekMenuTodayList" parameterType="map" resultType="hashmap">
+    	SELECT idx,
+    		   DATE_FORMAT(menu_date, '%Y-%m-%d') as menu_date,
+    		   content,
+    		   type,
+    		   del_yn,
+    		   update_dt,
+    		   reg_dt,
+    		   user_id
+			FROM tb_week_menu 
+			WHERE DATE_FORMAT(menu_date, '%Y-%m-%d') = #{today}
+			AND type = #{type}
+			AND del_yn = 'N'
+    </select>
+    
     <insert id="EventSave">
         INSERT INTO tb_week_menu
     

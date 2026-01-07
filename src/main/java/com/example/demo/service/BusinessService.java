@@ -210,6 +210,12 @@ public class BusinessService {
 		resultList = businessMapper.BusinessScheduleList(paramMap);
 		return resultList;
 	}
+	// 메인화면 -> 당일 영업팀 일정 조회
+	public List<Map<String, Object>> BusinessScheduleTodayList(Map<String, Object> paramMap) {
+		List<Map<String, Object>> resultList = new ArrayList<>();
+		resultList = businessMapper.BusinessScheduleTodayList(paramMap);
+		return resultList;
+	}
 	// 영업 -> 일정관리 -> 캘린더 저장
 	public int BusinessScheduleSave (Map<String, Object> paramMap) {
 		int iResult = 0;

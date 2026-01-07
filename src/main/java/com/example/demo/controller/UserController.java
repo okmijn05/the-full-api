@@ -45,9 +45,26 @@ public class UserController {
     	} else {
     		obj.addProperty("user_id", resultMap.get("user_id").toString());
         	obj.addProperty("user_type", resultMap.get("user_type").toString());
+        	
+        	if (resultMap.get("user_id").toString().equals("ceo")) {
+        		obj.addProperty("position_name", "CEO");
+        	} else if (resultMap.get("user_id").toString().equals("britzsky")
+        			|| resultMap.get("user_id").toString().equals("hh2")
+        			|| resultMap.get("user_id").toString().equals("mh2")
+        			|| resultMap.get("user_id").toString().equals("bh4")
+        			|| resultMap.get("user_id").toString().equals("yh2")) {
+        		obj.addProperty("position_name", "Team Leader");
+        	} else if (resultMap.get("user_id").toString().equals("sy7")
+        			|| resultMap.get("user_id").toString().equals("jr1")) {
+        		obj.addProperty("position_name", "Part Leader");
+        	} else {
+        		obj.addProperty("position_name", "Manager");
+        	}
+        	
         	obj.addProperty("position", resultMap.get("position").toString());
         	obj.addProperty("department", resultMap.get("department").toString());
         	obj.addProperty("account_id", resultMap.get("account_id").toString());
+        	obj.addProperty("user_name", resultMap.get("user_name").toString());
         	obj.addProperty("code", "status_code");
     	}
     	

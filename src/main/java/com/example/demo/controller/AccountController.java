@@ -1134,6 +1134,17 @@ public class AccountController {
     	if (mainList != null) {
     		for (Map<String, Object> mainMap : mainList) {
         		iResult += accountService.AccountCorporateCardPaymentSave(mainMap);
+        		
+        		// 손익표, 예산 프로시저 적용을 위한 연,월 추출.
+        		String paymentDate = String.valueOf(mainMap.get("payment_dt")); // "2026-01-01"
+
+        		LocalDate payDate = LocalDate.parse(paymentDate); // 기본 ISO(yyyy-MM-dd) 파싱됨
+        		int year = payDate.getYear();        // 2026
+        		int month = payDate.getMonthValue(); // 1~12
+        		
+        		mainMap.put("year", year);
+        		mainMap.put("month", month);
+        		
         		// 집계표도 다시 적용.
         		iResult += accountService.TallySheetCorporateCardPaymentSave(mainMap);
             }

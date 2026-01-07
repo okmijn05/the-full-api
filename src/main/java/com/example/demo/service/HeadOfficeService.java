@@ -24,9 +24,13 @@ public class HeadOfficeService {
 	public int WeekMenuSave(Map<String, Object> paramMap) {
 		return headOfficeMapper.WeekMenuSave(paramMap);
 	};
-	// 본사 -> 캘린더 조회
+	// 본사 -> 식단표 캘린더 조회
 	public List<Map<String, Object>> WeekMenuList(Map<String, Object> paramMap) {
 		return headOfficeMapper.WeekMenuList(paramMap);
+	}
+	// 본사 -> 식단표 당일 조회
+	public List<Map<String, Object>> WeekMenuTodayList(Map<String, Object> paramMap) {
+		return headOfficeMapper.WeekMenuTodayList(paramMap);
 	}
 	// 본사 -> 캘린더 저장2
 	public int EventSave(Map<String, Object> paramMap) {

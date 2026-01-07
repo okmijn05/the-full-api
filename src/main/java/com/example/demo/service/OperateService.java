@@ -278,6 +278,12 @@ public class OperateService {
 		resultList = operateMapper.OperateScheduleList(paramMap);
 		return resultList;
 	}
+	// 메인화면 -> 운영팀 당일 일정 조회
+	public List<Map<String, Object>> OperateScheduleTodayList(Map<String, Object> paramMap) {
+		List<Map<String, Object>> resultList = new ArrayList<>();
+		resultList = operateMapper.OperateScheduleTodayList(paramMap);
+		return resultList;
+	}
 	// 운영 -> 일정관리 -> 캘린더 저장
 	public int OperateScheduleSave (Map<String, Object> paramMap) {
 		int iResult = 0;

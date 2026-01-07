@@ -741,7 +741,7 @@ public class OperateController {
     /*
      * part		: 운영
      * method 	: OperateMemberList
-     * comment 	: 운영관리 -> 일정관리 -> 영업팀 조회
+     * comment 	: 운영관리 -> 일정관리 -> 운영팀 조회
      */
     @GetMapping("Operate/OperateMemberList")
     public String OperateMemberList(@RequestParam Map<String, Object> paramMap) {
@@ -760,6 +760,19 @@ public class OperateController {
     public String OperateScheduleList(@RequestParam Map<String, Object> paramMap) {
     	List<Map<String, Object>> resultList = new ArrayList<>();
     	resultList = operateService.OperateScheduleList(paramMap);
+    	
+    	return new Gson().toJson(resultList);
+    }
+    
+    /*
+     * part		: 운영
+     * method 	: OperateScheduleTodayList
+     * comment 	: 메인화면 -> 운영팀 당일 일정 조회
+     */
+    @GetMapping("Operate/OperateScheduleTodayList")
+    public String OperateScheduleTodayList(@RequestParam Map<String, Object> paramMap) {
+    	List<Map<String, Object>> resultList = new ArrayList<>();
+    	resultList = operateService.OperateScheduleTodayList(paramMap);
     	
     	return new Gson().toJson(resultList);
     }

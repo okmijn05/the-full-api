@@ -50,7 +50,8 @@
     		   DATE_FORMAT(T.del_dt, '%Y-%m-%d') AS del_dt, 
     		   T.del_yn, T.account_id, T.position, T.department, 
     		   T2.address, T2.address_detail, T2.zipcode, T2.phone, 
-    		   DATE_FORMAT(T2.birth_date, '%Y-%m-%d') AS birth_date
+    		   DATE_FORMAT(T2.birth_date, '%Y-%m-%d') AS birth_date,
+    		   T.user_name
 			FROM tb_user T
 			JOIN tb_userdetail T2
 			ON T.user_id = T2.user_id
@@ -86,7 +87,19 @@
     </select>
     
     <select id="ContractEndAccountList" resultType="hashmap">
-    	SELECT a.account_id, a.account_name, DATE_FORMAT(ai.contract_end, '%Y-%m-%d') as contract_end
+    	SELECT a.account_id, 
+    		   a.account_name, 
+    		   account_address, 
+    		   DATE_FORMAT(ai.contract_start, '%Y-%m-%d') as contract_start, 
+    		   DATE_FORMAT(ai.contract_end, '%Y-%m-%d') as contract_end,
+    		   CASE WHEN a.account_type = 1 THEN '요양원'
+    		   		WHEN a.account_type = 2 THEN '도소매'
+    		   		WHEN a.account_type = 3 THEN '프랜차이즈'
+    		   		WHEN a.account_type = 4 THEN '산업체'
+    		   		ELSE '학교' END AS account_type,
+    		   CASE WHEN ai.manager_name = '' || ai.manager_name is null  THEN ai.manager_name2
+    		   		WHEN ai.manager_name2 = '' || ai.manager_name2 is null THEN ai.closing_name
+    		   		ELSE '' END AS manager_name
 		FROM tb_account_info ai
 		JOIN tb_account a
 		ON a.account_id = ai.account_id

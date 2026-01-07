@@ -392,6 +392,29 @@
 			WHERE DATE_FORMAT(start_date, '%Y-%m') = CONCAT(#{year},'-',#{month})
 			AND DATE_FORMAT(end_date, '%Y-%m') = CONCAT(#{year},'-',#{month})
     </select>
+    
+    <select id="BusinessScheduleTodayList" parameterType="map" resultType="hashmap">
+    	SELECT bc.idx,
+    		   DATE_FORMAT(bc.start_date, '%Y-%m-%d') as start_date,
+    		   DATE_FORMAT(bc.end_date, '%Y-%m-%d') as end_date,
+    		   bc.content,
+    		   bc.type,
+    		   bc.del_yn,
+    		   bc.update_dt,
+    		   bc.reg_dt,
+    		   bc.user_id,
+    		   bc.reg_user_id,
+    		   u.user_name,
+    		   CASE WHEN u.user_id = 'ceo' THEN '대표'
+			        WHEN u.user_id IN ('britzsky', 'hh2', 'mh2', 'bh4', 'yh2') THEN '팀장'
+			        WHEN u.user_id IN ('sy7', 'jr1') THEN '파트장'
+			        ELSE '매니저'
+			    END AS position_name
+			FROM tb_business_calendar bc
+			JOIN tb_user u
+			ON u.user_id = bc.user_id 
+			WHERE DATE_FORMAT(start_date, '%Y-%m-%d') = #{today}
+    </select>
 	
 	<insert id="BusinessScheduleSave">
         INSERT INTO tb_business_calendar

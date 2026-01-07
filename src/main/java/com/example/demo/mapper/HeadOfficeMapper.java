@@ -10,6 +10,7 @@ public interface HeadOfficeMapper {
 	
 	int WeekMenuSave(Map<String, Object> paramMap);											// 본사 -> 식단표 저장
 	List<Map<String, Object>> WeekMenuList(Map<String, Object> paramMap);					// 본사 -> 식단표 조회
+	List<Map<String, Object>> WeekMenuTodayList(Map<String, Object> paramMap);				// 본사 -> 식단표 당일 조회
 	int EventSave(Map<String, Object> paramMap);											// 본사 -> 행사달력 저장
 	List<Map<String, Object>> EventList(Map<String, Object> paramMap);						// 본사 -> 행사달력 조회
 	List<Map<String, Object>> PeopleCountingList(Map<String, Object> paramMap);				// 본사 -> 인원증감 조회

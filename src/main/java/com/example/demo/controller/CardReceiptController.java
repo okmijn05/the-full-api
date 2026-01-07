@@ -94,13 +94,19 @@ public class CardReceiptController {
             LocalDate date = DateUtils.parseFlexibleDate(result.meta.saleDate);
             LocalDateTime dateTime = LocalDateTime.of(date, LocalTime.now());
             String saleId = dateTime.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"));
-
+            
+            // 손익표, 예산 적용을 위해 SaleDate 에서 연도와 월을 추출.
+            int year = date.getYear();        // 2026
+            int month = date.getMonthValue(); // 1~12
+            
             // ✅ 3) DB 저장 payload 만들기
             Map<String, Object> corporateCard = new HashMap<>();
 
             boolean isAccount = "account".equalsIgnoreCase(saveType); // ✅ NPE 방지
             if (isAccount) {
                 corporateCard.put("account_id", objectValue);
+                corporateCard.put("year", year);
+                corporateCard.put("month", month);
             } else {
                 // 본사/부서 저장
                 int iDepartment = (objectValue == null || objectValue.isBlank()) ? 0 : Integer.parseInt(objectValue);

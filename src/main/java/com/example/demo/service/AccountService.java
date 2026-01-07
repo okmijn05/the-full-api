@@ -369,13 +369,6 @@ public class AccountService {
 		iResult = accountMapper.HeadOfficeCorporateCardPaymentDetailLSave(paramMap);
 		return iResult;
 	}
-	
-	
-	
-	
-	
-	
-	
 	// 회계 -> 현장 법인카드 목록 조회
 	public List<Map<String, Object>> AccountCorporateCardList (Map<String, Object> paramMap) {
 		List<Map<String, Object>> resultList = new ArrayList<>();
@@ -412,9 +405,12 @@ public class AccountService {
 		iResult = accountMapper.AccountCorporateCardPaymentDetailLSave(paramMap);
 		return iResult;
 	}
-	// 회계 -> 현장 법인카드 집계표 적용
+	// 회계 -> 현장 법인카드 집계표 적용, 손익표, 예산도 함께 적용해야 함.
+	@Transactional(rollbackFor = Exception.class)  // ✅ 전체 작업 트랜잭션
 	public int TallySheetCorporateCardPaymentSave(Map<String, Object> paramMap) {
+		
 		int result = 0;
+		
 		paramMap.put("result", 0); // OUT 값 초기화
 		accountMapper.TallySheetCorporateCardPaymentSave(paramMap);
 		// OUT 값 확인
@@ -423,6 +419,26 @@ public class AccountService {
             throw new RuntimeException("❌ sp_sync_corp_card_to_tally_sheet_one_day 프로시저 실패");
         }
 		
+        // ③ 손익표 합계 + 비율 저장 프로시저 호출
+        paramMap.put("result", 0); // OUT 값 초기화
+        headOfficeMapper.ProfitLossTotalSave(paramMap);
+        
+        // OUT 값 확인
+        result = (int) paramMap.get("result");
+        if (result != 1) {
+            throw new RuntimeException("❌ ProfitLossTotalSave 프로시저 실패");
+        }
+        
+        // 예산 저장 프로시저 호출
+        paramMap.put("result", 0); // OUT 값 초기화
+        operateMapper.BudgetTotalSave(paramMap);
+
+        // OUT 값 확인
+        result = (int) paramMap.get("result");
+        if (result != 1) {
+            throw new RuntimeException("❌ BudgetTotalSave 프로시저 실패");
+        }
+        
 		return result;
 	}
 }

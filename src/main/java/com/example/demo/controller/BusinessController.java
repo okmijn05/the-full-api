@@ -833,6 +833,19 @@ public class BusinessController {
     	return new Gson().toJson(resultList);
     }
     
+    /*
+     * part		: 영업
+     * method 	: BusinessScheduleTodayList
+     * comment 	: 메인화면 -> 당일 영업팀 일정 조회
+     */
+    @GetMapping("Business/BusinessScheduleTodayList")
+    public String BusinessScheduleTodayList(@RequestParam Map<String, Object> paramMap) {
+    	List<Map<String, Object>> resultList = new ArrayList<>();
+    	resultList = businessService.BusinessScheduleTodayList(paramMap);
+    	
+    	return new Gson().toJson(resultList);
+    }
+    
     /* 
 	 * part		: 영업
      * method 	: BusinessScheduleSave
