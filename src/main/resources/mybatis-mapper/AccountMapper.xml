@@ -262,9 +262,32 @@
 		    subquery.count_max,
 		    subquery.min_salary,
 		    subquery.count_min,
-		    CASE WHEN ifnull(subquery.max_salary,0) != 0 THEN CONCAT(FORMAT(ifnull(subquery.max_salary,0),0), "원 ", FORMAT(ifnull(subquery.count_max,0),0), "회, 총 ", FORMAT((ifnull(subquery.max_salary,0) * ifnull(subquery.count_max,0)) + COALESCE((ifnull(subquery.min_salary,0) * ifnull(subquery.count_min,0)), 0),0), "원")
-				 WHEN ifnull(subquery.min_salary,0) != 0 THEN CONCAT(FORMAT(ifnull(subquery.max_salary,0),0), "원 ", FORMAT(ifnull(subquery.count_max,0),0), "회", FORMAT(ifnull(subquery.min_salary,0),0), "원 ", FORMAT(ifnull(subquery.count_min,0),0), "회, 총 ", FORMAT((ifnull(subquery.max_salary,0) * ifnull(subquery.count_max,0)) + COALESCE((ifnull(subquery.min_salary,0) * ifnull(subquery.count_min,0)), 0),0), "원")
-                 ELSE '' END AS total,
+		    CASE 
+				WHEN IFNULL(subquery.count_max, 0) = 0 AND IFNULL(subquery.count_min, 0) = 0 THEN ''
+				ELSE 
+					CONCAT(
+						-- Max Salary 파트: count가 0보다 클 때만 표시
+						IF(IFNULL(subquery.count_max, 0) > 0, 
+						   CONCAT(FORMAT(subquery.max_salary, 0), "원 ", FORMAT(subquery.count_max, 0), "회"), 
+						   ""),
+						
+						-- 연결자: 둘 다 존재할 경우에만 ' + ' 추가
+						IF(IFNULL(subquery.count_max, 0) > 0 AND IFNULL(subquery.count_min, 0) > 0, " + ", ""),
+						
+						-- Min Salary 파트: count가 0보다 클 때만 표시
+						IF(IFNULL(subquery.count_min, 0) > 0, 
+						   CONCAT(FORMAT(subquery.min_salary, 0), "원 ", FORMAT(subquery.count_min, 0), "회"), 
+						   ""),
+						
+						-- 총액 파트
+						", 총 ", 
+						FORMAT(
+							(IFNULL(subquery.max_salary, 0) * IFNULL(subquery.count_max, 0)) + 
+							(IFNULL(subquery.min_salary, 0) * IFNULL(subquery.count_min, 0)), 
+						0), 
+						"원"
+					)
+			END AS total,
 		    --FORMAT((ifnull(subquery.max_salary,0) * ifnull(subquery.count_max,0)) + COALESCE((ifnull(subquery.min_salary,0) * ifnull(subquery.count_min,0)), 0),0) AS total,
 		    subquery.rrn,
 		    subquery.account_number,

@@ -405,11 +405,12 @@
     		   bc.user_id,
     		   bc.reg_user_id,
     		   u.user_name,
-    		   CASE WHEN u.user_id = 'ceo' THEN '대표'
-			        WHEN u.user_id IN ('britzsky', 'hh2', 'mh2', 'bh4', 'yh2') THEN '팀장'
-			        WHEN u.user_id IN ('sy7', 'jr1') THEN '파트장'
+    		   CASE WHEN u.position = 0 THEN 'CEO'
+			        WHEN u.position = 1 THEN '팀장'
+			        WHEN u.position = 2 THEN '파트장'
 			        ELSE '매니저'
-			    END AS position_name
+			    END AS position_name,
+			  u.department
 			FROM tb_business_calendar bc
 			JOIN tb_user u
 			ON u.user_id = bc.user_id 
