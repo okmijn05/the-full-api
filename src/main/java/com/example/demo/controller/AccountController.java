@@ -539,7 +539,9 @@ public class AccountController {
             @RequestParam("account_id") String accountId,
             @RequestParam(value = "business_report", required = false) MultipartFile businessReport,
             @RequestParam(value = "business_regist", required = false) MultipartFile businessRegist,
-            @RequestParam(value = "kitchen_drawing", required = false) MultipartFile kitchenDrawing
+            @RequestParam(value = "kitchen_drawing", required = false) MultipartFile kitchenDrawing,
+            @RequestParam(value = "nutritionist_room_img", required = false) MultipartFile nutritionistRoomImg,
+            @RequestParam(value = "chef_lounge_img", required = false) MultipartFile chefLoungeImg
     ) throws IOException {
         Map<String, String> filePathMap = new HashMap<>();
 
@@ -556,6 +558,16 @@ public class AccountController {
         if (kitchenDrawing != null && !kitchenDrawing.isEmpty()) {
             String path = saveFile(accountId, "kitchen_drawing", kitchenDrawing);
             filePathMap.put("kitchen_drawing", path);
+        }
+        
+        if (nutritionistRoomImg != null && !nutritionistRoomImg.isEmpty()) {
+            String path = saveFile(accountId, "nutritionist_room_img", nutritionistRoomImg);
+            filePathMap.put("nutritionist_room_img", path);
+        }
+        
+        if (chefLoungeImg != null && !chefLoungeImg.isEmpty()) {
+            String path = saveFile(accountId, "chef_lounge_img", chefLoungeImg);
+            filePathMap.put("chef_lounge_img", path);
         }
 
         // Map을 MyBatis로 저장
