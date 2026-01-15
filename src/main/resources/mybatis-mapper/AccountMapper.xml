@@ -1208,6 +1208,7 @@
 	        discount,
 	        vat,
 	        taxFree,
+	        tax,
 	        payType,
 	        totalCash,
 	        totalCard,
@@ -1227,6 +1228,7 @@
 	        #{discount},
 	        #{vat},
 	        #{taxFree},
+	        #{tax},
 	        #{payType},
 	        #{totalCash},
 	        #{totalCard},
@@ -1244,6 +1246,7 @@
 	        discount=#{discount},
 	        vat=#{vat},
 	        taxFree=#{taxFree},
+	        tax=#{tax},
 	        payType=#{payType},
 	        totalCash=#{totalCash},
 	        totalCard=#{totalCard},
@@ -1301,6 +1304,7 @@
 		       ifnull(apt.total, 0) as total, 
 		       ifnull(apt.vat, 0) as vat,
 		       ifnull(apt.taxFree, 0) as taxFree,
+		       ifnull(apt.tax, 0) as tax,
 		       ifnull(apt.totalCash, 0) as totalCash,
 		       ifnull(apt.totalCard, 0) as totalCard,
 		       apt.payType,
@@ -1309,7 +1313,8 @@
 		       apt.receipt_image,
 		       apt.note,
 		       apt.bizNo,
-		       am.ceo_name
+		       am.ceo_name,
+		       apt.sale_id
 		FROM tb_account a
 		JOIN tb_account_mapping_v2 amv
 		ON amv.account_id = a.account_id
@@ -1332,6 +1337,7 @@
 	<select id="AccountPurchaseDetailList" parameterType="map" resultType="hashmap">
 		SELECT apt.account_id, 
 			   aptd.sale_id,
+			   aptd.item_id,
 			   a.account_name,
 			   DATE_FORMAT(apt.saleDate, '%Y-%m-%d') as saleDate, 
 			   aptd.name, 

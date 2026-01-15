@@ -93,12 +93,12 @@
 	
 	<insert id="BusinessContractSuccessSave_2" parameterType="map">
 		<if test='manager_name != null'>
-			INSERT INTO tb_account(account_id,manager_name)
+			INSERT INTO tb_account_info(account_id,manager_name)
 			VALUES
 			(#{account_id},#{manager_name})
  		</if>
 		<if test='manager_name == null'>
-			INSERT INTO tb_account(account_id)
+			INSERT INTO tb_account_info(account_id)
 			VALUES
 			(#{account_id})
  		</if>

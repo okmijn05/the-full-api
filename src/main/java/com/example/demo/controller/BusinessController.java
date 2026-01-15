@@ -186,9 +186,6 @@ public class BusinessController {
     		if (row.get("contract_type") != null && row.get("contract_type").equals(2)) {
     			Map<String,Object> accountMap = new HashMap<String,Object>();
     			accountMap.put("account_name", row.get("account_name").toString());
-    			
-    			System.out.println(accountMap.get("account_name"));
-    			
     			if (row.get("manager") != null) {
     				accountMap.put("manager_name", row.get("manager").toString());
     			}

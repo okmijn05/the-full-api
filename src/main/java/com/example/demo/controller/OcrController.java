@@ -32,6 +32,7 @@ import com.example.demo.parser.ReceiptParserFactory;
 import com.example.demo.service.AccountService;
 import com.example.demo.service.AiReceiptAnalyzer;
 import com.example.demo.service.OcrService;
+import com.example.demo.service.OperateService;
 import com.example.demo.utils.BizNoUtils;
 import com.example.demo.utils.DateUtils;
 import com.google.cloud.documentai.v1.Document;
@@ -52,7 +53,10 @@ public class OcrController {
     
     @Autowired
     private AccountService accountService;
-
+    
+    @Autowired
+    private OperateService operateService;
+    
     @Autowired(required = false)
     private AiReceiptAnalyzer aiAnalyzer; // 향후 자동 분석용 (지금은 사용 안 해도 OK)
     
@@ -102,6 +106,7 @@ public class OcrController {
             @RequestParam("file") MultipartFile file,
             @RequestParam(value = "type", required = false) String type,
             @RequestParam(value = "account_id", required = false) String account_id,
+            @RequestParam(value = "cell_day", required = false) String cell_day,
             @RequestParam(value = "cell_date", required = false) String cell_date) {
     	
     	// 1️⃣ 파일 저장
@@ -154,6 +159,10 @@ public class OcrController {
             // 4️⃣ 원하는 형식으로 출력 (예: 20251009152744)
             String saleId = dateTime.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"));
             String receiptDate = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            
+            // tally sheet 테이블 저장을 위한 연,월 세팅.
+            String yearStr = date.format(DateTimeFormatter.ofPattern("yyyy"));
+            String monthStr = date.format(DateTimeFormatter.ofPattern("MM"));
             
             purchase.put("sale_id", saleId);							// saleId 세팅.
             purchase.put("saleDate", date);								// saleDate 세팅.
@@ -294,7 +303,18 @@ public class OcrController {
             
             int iResult = 0;
             
+            // tall sheet 테이블 저장을 위한 값 세팅.
+            String day = "day_" + cell_day;
+            int total = 0;
+            Object totalObj = purchase.get("total");
+            total = Integer.parseInt(totalObj.toString());
+            
+            purchase.put(day, total);
+            purchase.put("count_year", yearStr);
+            purchase.put("count_month", monthStr);
+            
             iResult += accountService.AccountPurchaseSave(purchase);
+            iResult += operateService.TallyNowMonthSave(purchase);
             
             for (Map<String, Object> m : detailList) {
             	iResult += accountService.AccountPurchaseDetailSave(m);

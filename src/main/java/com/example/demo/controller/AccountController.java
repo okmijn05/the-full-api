@@ -904,6 +904,60 @@ public class AccountController {
     }
     
     /*
+     * part		: 회계
+     * method 	: AccountPurchaseSave
+     * comment 	: 회계 -> 매입마감 저장
+     */
+    @PostMapping("Account/AccountPurchaseSave")
+    private String AccountPurchaseSave(@RequestBody List<Map<String, Object>> paramList) {
+    	
+    	int iResult = 0;
+    	
+    	for (Map<String, Object> paramMap : paramList) {
+            iResult += accountService.AccountPurchaseSave(paramMap);
+        }
+    	
+    	JsonObject obj = new JsonObject();
+    	
+    	if(iResult > 0) {
+			obj.addProperty("code", 200);
+			obj.addProperty("message", "성공");
+    	} else {
+    		obj.addProperty("code", 400);
+			obj.addProperty("message", "실패");
+    	}
+    	
+    	return obj.toString();
+    }
+    
+    /*
+     * part		: 회계
+     * method 	: AccountPurchaseDetailSave
+     * comment 	: 회계 -> 매입집계 저장
+     */
+    @PostMapping("Account/AccountPurchaseDetailSave")
+    private String AccountPurchaseDetailSave(@RequestBody List<Map<String, Object>> paramList) {
+    	
+    	int iResult = 0;
+    	
+    	for (Map<String, Object> paramMap : paramList) {
+            iResult += accountService.AccountPurchaseDetailSave(paramMap);
+        }
+    	
+    	JsonObject obj = new JsonObject();
+    	
+    	if(iResult > 0) {
+			obj.addProperty("code", 200);
+			obj.addProperty("message", "성공");
+    	} else {
+    		obj.addProperty("code", 400);
+			obj.addProperty("message", "실패");
+    	}
+    	
+    	return obj.toString();
+    }
+    
+    /*
      * part		: 운영,회계
      * method 	: AccountIssueList
      * comment 	: 운영,회계 -> 거래처 이슈 조회
